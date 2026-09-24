@@ -13,21 +13,6 @@ texture_region_size = Vector2i(61, 61)
 tile_size = Vector2i(61, 61)
 sources/0 = SubResource("TileSetAtlasSource_jyhfs")
 
-[sub_resource type="Gradient" id="Gradient_jyhfs"]
-offsets = PackedFloat32Array(0.3375, 0.36875, 1)
-colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_sugp2"]
-noise_type = 0
-frequency = 0.018
-fractal_lacunarity = 1.61
-fractal_gain = 0.39
-fractal_weighted_strength = 0.45
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0wfyh"]
-noise = SubResource("FastNoiseLite_sugp2")
-color_ramp = SubResource("Gradient_jyhfs")
-
 [node name="Node2D" type="Node2D" unique_id=552534615]
 
 [node name="CoveringGround" type="TileMapLayer" parent="." unique_id=1093058249]
@@ -38,12 +23,5 @@ tile_set = SubResource("TileSet_mltvj")
 script = ExtResource("2_sugp2")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1551190976]
-position = Vector2(11294, 7734)
-zoom = Vector2(0.04, 0.04)
-
-[node name="TextureRect" type="TextureRect" parent="." unique_id=851017431]
-offset_left = -8.0
-offset_top = -91.0
-offset_right = 504.0
-offset_bottom = 421.0
-texture = SubResource("NoiseTexture2D_0wfyh")
+position = Vector2(3314, 1691)
+zoom = Vector2(0.165, 0.165)
