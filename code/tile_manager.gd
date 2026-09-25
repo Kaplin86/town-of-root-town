@@ -1,14 +1,32 @@
 extends Node
+class_name TileManagerNode
+
+@export var Background : TileMapLayer
+@export var Coverground : TileMapLayer 
 
 const MAPSIZEX = 40
 const MAPSIZEY = 40
 
-var Tiles : Dictionary[Vector2i,String]
+enum RoomTypes {
+	Covered_Ground,
+	Covered_Root,
+	Emptied_Ground,
+	Emptied_Root,
+	Pathway,
+	House,
+	Garden,
+	Capital
+}
+
+
+var Tiles : Dictionary[Vector2i,RoomTypes]
 
 var noise = FastNoiseLite.new()
 
 var activeWorms = []
 var wormID = 0
+
+signal DoneGenerating
 
 func _generate():
 	Tiles = {}
@@ -17,19 +35,27 @@ func _generate():
 	
 	for x in MAPSIZEX:
 		for y in MAPSIZEY:
-			Tiles[Vector2i(x,y)] = "Dirt"
+			Tiles[Vector2i(x,y)] = RoomTypes.Covered_Ground
 	
-	await doWorm(Vector2(20,0), 4, 90)
+	doWorm(Vector2(20,0), 4, 90)
 	
 	while activeWorms != []:
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().process_frame
 	
-	await get_tree().create_timer(0.3).timeout
-	_generate()
+	var lowestY = 0
+	var lowestX = 0
+	for x in MAPSIZEX:
+		for y in MAPSIZEY:
+			if Tiles[Vector2i(x,y)] == RoomTypes.Covered_Root:
+				if y >= lowestY:
+					lowestY = y
+					lowestX = x
+	Tiles[Vector2i(lowestX,lowestY)] = RoomTypes.Capital
+	
+	DoneGenerating.emit()
 	
 func _ready():
 	_generate()
-	
 
 func doWorm(startPos, thickness, angleOffset):
 	var myID = wormID
@@ -45,15 +71,14 @@ func doWorm(startPos, thickness, angleOffset):
 	}[thickness]
 	
 	for C in worm_dist:
-		if randi_range(0,10) == 5:
-			await RenderingServer.frame_post_draw
 		var angle = noise.get_noise_2d(worm_pos.x * 0.5, worm_pos.y) * PI * 0.8
 		angle += deg_to_rad(angleOffset)
 		angle += randf_range(-0.25, 0.25)
 		worm_pos += Vector2(cos(angle) * 1.2, sin(angle)) * 1
 		for I in thickness:
 			var offset = I - (thickness * 0.5)
-			Tiles[Vector2i(worm_pos) + Vector2i(offset,0)] = "Root"
+			if Tiles.get(Vector2i(worm_pos) + Vector2i(offset,0),null) == RoomTypes.Covered_Ground:
+				Tiles[Vector2i(worm_pos) + Vector2i(offset,0)] = RoomTypes.Covered_Root
 		
 		if thickness == 4 and C == round(worm_dist / 2.0):
 			var sideOffset
@@ -79,10 +104,13 @@ func _process(delta):
 	_display()
 
 func _display():
-	$"../CoveringGround".clear()
+	Coverground.clear()
+	Background.clear()
 	for I in Tiles:
-		var val = Tiles[I]
-		if val == "Root":
-			$"../CoveringGround".set_cell(I,0,Vector2(1,0))
-		else:
-			$"../CoveringGround".set_cell(I,0,Vector2(0,0))
+		var val : RoomTypes = Tiles[I]
+		if val == RoomTypes.Covered_Ground:
+			Coverground.set_cell(I,0,Vector2i(0,0))
+		elif val == RoomTypes.Covered_Root:
+			Coverground.set_cell(I,0,Vector2i(1,0))
+		elif val == RoomTypes.Capital:
+			Background.set_cell(I,0,Vector2i(1,0))
