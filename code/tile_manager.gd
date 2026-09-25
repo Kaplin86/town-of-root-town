@@ -126,3 +126,7 @@ func _display():
 			Background.set_cell(I,1,Vector2i(0,0),4)
 		elif val == RoomTypes.Garden:
 			Background.set_cell(I,1,Vector2i(0,0),3)
+		elif val == RoomTypes.Construction_Office:
+			Background.set_cell(I,1,Vector2i(0,0),5)
+		elif val == RoomTypes.Hospital:
+			Background.set_cell(I,1,Vector2i(0,0),6)

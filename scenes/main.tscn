@@ -10,7 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://05x53ba6qog1" path="res://scenes/tiles/garden.tscn" id="5_trceg"]
 [ext_resource type="PackedScene" uid="uid://v1aut3imootk" path="res://scenes/tiles/house.tscn" id="6_a8y0u"]
 [ext_resource type="Texture2D" uid="uid://lu4ggd3b33b4" path="res://assets/crosshair1.svg" id="6_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://duo5b474wowyf" path="res://scenes/tiles/construction_office.tscn" id="7_jkv2x"]
 [ext_resource type="Texture2D" uid="uid://cfr2lgxis1p2c" path="res://assets/crosshair2.svg" id="7_tipki"]
+[ext_resource type="PackedScene" uid="uid://51arghqeas81" path="res://scenes/tiles/hospital.tscn" id="8_jbj1t"]
 [ext_resource type="Script" uid="uid://dflvr04q07bry" path="res://code/ui_manager.gd" id="9_85g3d"]
 [ext_resource type="Script" uid="uid://bdlo1ac4fb5pk" path="res://code/construction_manager.gd" id="10_choun"]
 
@@ -27,6 +29,8 @@ scenes/1/scene = ExtResource("2_jyhfs")
 scenes/2/scene = ExtResource("4_ya4ey")
 scenes/3/scene = ExtResource("5_trceg")
 scenes/4/scene = ExtResource("6_a8y0u")
+scenes/5/scene = ExtResource("7_jkv2x")
+scenes/6/scene = ExtResource("8_jbj1t")
 
 [sub_resource type="TileSet" id="TileSet_jyhfs"]
 tile_size = Vector2i(61, 61)
