@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://6xhdrqm5fwvt" path="res://scenes/tiles/capitol.tscn" id="2_jyhfs"]
 [ext_resource type="Script" uid="uid://c1uipvocm05de" path="res://code/tile_manager.gd" id="2_sugp2"]
 [ext_resource type="Script" uid="uid://bpt2tl626x0qh" path="res://code/camera_2d.gd" id="3_sugp2"]
-[ext_resource type="Script" uid="uid://7n88b823guvy" path="res://code/selector_manager.gd" id="5_tbgi4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0wfyh"]
 texture = ExtResource("1_0wfyh")
@@ -54,10 +53,6 @@ Coverground = NodePath("../CoveringGround")
 position = Vector2(2039, 1071)
 zoom = Vector2(1.58, 1.58)
 script = ExtResource("3_sugp2")
-tileManager = NodePath("../TileManager")
-
-[node name="SelectorManager" type="Node" parent="." unique_id=1273487981 node_paths=PackedStringArray("tileManager")]
-script = ExtResource("5_tbgi4")
 tileManager = NodePath("../TileManager")
 
 [connection signal="DoneGenerating" from="TileManager" to="Camera2D" method="_on_tile_manager_done_generating"]
