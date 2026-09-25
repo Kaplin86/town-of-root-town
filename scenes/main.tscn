@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://lu4ggd3b33b4" path="res://assets/crosshair1.svg" id="6_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://cfr2lgxis1p2c" path="res://assets/crosshair2.svg" id="7_tipki"]
 [ext_resource type="Script" uid="uid://dflvr04q07bry" path="res://code/ui_manager.gd" id="9_85g3d"]
+[ext_resource type="Script" uid="uid://bdlo1ac4fb5pk" path="res://code/construction_manager.gd" id="10_choun"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0wfyh"]
 texture = ExtResource("1_0wfyh")
@@ -76,7 +77,7 @@ texture = ExtResource("7_tipki")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1484552480]
 
-[node name="UiManager" type="Control" parent="CanvasLayer" unique_id=1305685946 node_paths=PackedStringArray("main", "population", "food", "supplies", "workers", "availableWorkers", "TileManager", "SelectorManager", "buildingPanel")]
+[node name="UiManager" type="Control" parent="CanvasLayer" unique_id=1305685946 node_paths=PackedStringArray("main", "population", "food", "supplies", "workers", "availableWorkers", "TileManager", "SelectorManager", "ConstructionCrewManager", "buildingPanel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -93,6 +94,7 @@ workers = NodePath("Panel/construction")
 availableWorkers = NodePath("Panel/available")
 TileManager = NodePath("../../TileManager")
 SelectorManager = NodePath("../../SelectorManager")
+ConstructionCrewManager = NodePath("../../ConstructionManager")
 buildingPanel = NodePath("BuildingPanel/VBoxContainer")
 
 [node name="Panel" type="Panel" parent="CanvasLayer/UiManager" unique_id=1367366657]
@@ -168,5 +170,9 @@ text = "BUILDING NAME HERE"
 [node name="Button" type="Button" parent="CanvasLayer/UiManager/BuildingPanel/VBoxContainer" unique_id=189095068]
 layout_mode = 2
 text = "Destroy"
+
+[node name="ConstructionManager" type="Node" parent="." unique_id=1763708581 node_paths=PackedStringArray("TileManager")]
+script = ExtResource("10_choun")
+TileManager = NodePath("../TileManager")
 
 [connection signal="DoneGenerating" from="TileManager" to="Camera2D" method="_on_tile_manager_done_generating"]

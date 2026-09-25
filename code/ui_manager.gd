@@ -9,6 +9,7 @@ extends Control
 
 @export var TileManager : TileManagerNode
 @export var SelectorManager : SelectorManagerNode
+@export var ConstructionCrewManager : ConstructionManager
 
 @export var buildingPanel : VBoxContainer
 
@@ -28,7 +29,18 @@ func _process(delta):
 			var nameLabel = Label.new()
 			buildingPanel.add_child(nameLabel)
 			nameLabel.text = str(TileManagerNode.RoomTypes.find_key(SelectedTileType)).capitalize()
-			if SelectedTileType == TileManagerNode.RoomTypes.Filled_Ground or SelectedTileType == TileManagerNode.RoomTypes.Filled_Root:
-				var button = Button.new()
-				buildingPanel.add_child(button)
-				button.text = "DESTROY!!!!"
+			if !ConstructionCrewManager.currentConstructions.has(selectedPos):
+				if SelectedTileType == TileManagerNode.RoomTypes.Filled_Ground or SelectedTileType == TileManagerNode.RoomTypes.Filled_Root:
+					var button = Button.new()
+					buildingPanel.add_child(button)
+					button.text = "DESTROY!!!!"
+					if SelectedTileType == TileManagerNode.RoomTypes.Filled_Ground:
+						button.pressed.connect(func():
+							ConstructionCrewManager.startConstruction(selectedPos,TileManagerNode.RoomTypes.Emptied_Ground)
+							selectedPos = Vector2i.ZERO
+						)
+					else:
+						button.pressed.connect(func():
+							ConstructionCrewManager.startConstruction(selectedPos,TileManagerNode.RoomTypes.Emptied_Root)
+							selectedPos = Vector2i.ZERO
+						)

@@ -114,3 +114,7 @@ func _display():
 			Coverground.set_cell(I,0,Vector2i(1,0))
 		elif val == RoomTypes.Capital:
 			Background.set_cell(I,1,Vector2i(0,0),1)
+		elif val == RoomTypes.Emptied_Ground:
+			Background.set_cell(I,0,Vector2i(0,0))
+		elif val == RoomTypes.Emptied_Root:
+			Background.set_cell(I,0,Vector2i(1,0))

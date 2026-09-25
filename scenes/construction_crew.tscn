@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://si7rh2vqbquo"]
+
+[ext_resource type="Texture2D" uid="uid://c11jjdet00a0p" path="res://icon.svg" id="1_3yhdj"]
+[ext_resource type="Script" uid="uid://b53vxf8tx4egy" path="res://code/construction_crew.gd" id="1_s64oo"]
+
+[sub_resource type="Gradient" id="Gradient_4kxuq"]
+offsets = PackedFloat32Array(0, 0.21721311, 0.7827869, 0.9918033)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_mti6b"]
+colors = PackedColorArray(0.8146785, 0.8146786, 0.81467855, 1, 1.8247963, 1.8247963, 1.8247963, 1)
+
+[node name="Node2D" type="Node2D" unique_id=1672404357]
+script = ExtResource("1_s64oo")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=359863277]
+visible = false
+offset_left = -31.0
+offset_top = -31.0
+offset_right = 31.0
+offset_bottom = 31.0
+mouse_filter = 2
+color = Color(0.41568628, 0.23137255, 0.13725491, 1)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=126974599]
+amount = 30
+emission_shape = 3
+emission_rect_extents = Vector2(30, 30)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+angular_velocity_min = -151.58
+angular_velocity_max = 151.58
+radial_accel_max = 5.55
+angle_min = -530.5
+angle_max = 486.8
+scale_amount_min = 10.0
+scale_amount_max = 12.0
+color = Color(0.19, 0.05383333, 0, 1)
+color_ramp = SubResource("Gradient_4kxuq")
+color_initial_ramp = SubResource("Gradient_mti6b")
+
+[node name="ProgressBar" type="TextureProgressBar" parent="." unique_id=448766607]
+offset_left = -23.0
+offset_top = -10.0
+offset_right = 105.0
+offset_bottom = 118.0
+scale = Vector2(0.35989696, 0.0806291)
+step = 0.265
+value = 70.0
+texture_under = ExtResource("1_3yhdj")
+texture_progress = ExtResource("1_3yhdj")
+tint_progress = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="." unique_id=18950351]
+offset_left = -31.0
+offset_right = 31.0
+offset_bottom = 23.0
+text = "1:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="." unique_id=126100732]
+wait_time = 30.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
