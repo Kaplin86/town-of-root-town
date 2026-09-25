@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://6xhdrqm5fwvt"]
+[gd_scene format=3 uid="uid://v1aut3imootk"]
 
-[ext_resource type="Texture2D" uid="uid://bgeforhbonb8" path="res://assets/buildings/capitol.svg" id="1_ybovq"]
+[ext_resource type="Texture2D" uid="uid://bpm8atcxhhiqa" path="res://assets/buildings/house.svg" id="1_c2ydw"]
 
 [node name="Node2D" type="Node2D" unique_id=1122491858]
 
@@ -15,4 +15,4 @@ color = Color(0.41568628, 0.23137255, 0.13725491, 1)
 [node name="Capital" type="Sprite2D" parent="." unique_id=477070681]
 position = Vector2(-0.06, 0.035)
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_ybovq")
+texture = ExtResource("1_c2ydw")

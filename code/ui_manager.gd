@@ -13,6 +13,9 @@ extends Control
 
 @export var buildingPanel : VBoxContainer
 
+var RootBuildings = [TileManagerNode.RoomTypes.House,TileManagerNode.RoomTypes.Hospital,TileManagerNode.RoomTypes.Construction_Office]
+var GroundBuildings = [TileManagerNode.RoomTypes.Pathway,TileManagerNode.RoomTypes.Garden]
+
 var selectedPos = Vector2i.ZERO
 func _process(delta):
 	population.text = "Population: " + str(main.Population) + " / " + str(main.MaxHousing)
@@ -21,7 +24,7 @@ func _process(delta):
 	workers.text = "Construction Crews: " + str(main.CurrentWorkerTeams)
 	availableWorkers.text = "Available Workers: " + str(main.AvailableWorkers)
 	
-	var SelectedTileType : TileManagerNode.RoomTypes = TileManager.Tiles.get(SelectorManager.selectedPos,null)
+	var SelectedTileType : TileManagerNode.RoomTypes = TileManager.Tiles.get(SelectorManager.selectedPos,-1)
 	if selectedPos != SelectorManager.selectedPos:
 		selectedPos = SelectorManager.selectedPos
 		if SelectedTileType != null:
@@ -42,5 +45,23 @@ func _process(delta):
 					else:
 						button.pressed.connect(func():
 							ConstructionCrewManager.startConstruction(selectedPos,TileManagerNode.RoomTypes.Emptied_Root)
+							selectedPos = Vector2i.ZERO
+						)
+				if SelectedTileType == TileManagerNode.RoomTypes.Emptied_Root:
+					for I in RootBuildings:
+						var button = Button.new()
+						buildingPanel.add_child(button)
+						button.text = str(TileManagerNode.RoomTypes.find_key(I)).capitalize()
+						button.pressed.connect(func():
+							ConstructionCrewManager.startConstruction(selectedPos,I)
+							selectedPos = Vector2i.ZERO
+						)
+				if SelectedTileType == TileManagerNode.RoomTypes.Emptied_Ground:
+					for I in GroundBuildings:
+						var button = Button.new()
+						buildingPanel.add_child(button)
+						button.text = str(TileManagerNode.RoomTypes.find_key(I)).capitalize()
+						button.pressed.connect(func():
+							ConstructionCrewManager.startConstruction(selectedPos,I)
 							selectedPos = Vector2i.ZERO
 						)

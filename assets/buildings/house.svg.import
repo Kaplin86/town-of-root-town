@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgeforhbonb8"
-path="res://.godot/imported/capital.svg-795bf2255d165fdfa801c82f3c866deb.ctex"
+uid="uid://bpm8atcxhhiqa"
+path="res://.godot/imported/house.svg-49b60fd0f1e072b30d05db4f93277422.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/capital.svg"
-dest_files=["res://.godot/imported/capital.svg-795bf2255d165fdfa801c82f3c866deb.ctex"]
+source_file="res://assets/buildings/house.svg"
+dest_files=["res://.godot/imported/house.svg-49b60fd0f1e072b30d05db4f93277422.ctex"]
 
 [params]
 

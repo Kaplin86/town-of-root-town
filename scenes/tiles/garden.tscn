@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://6xhdrqm5fwvt"]
+[gd_scene format=3 uid="uid://05x53ba6qog1"]
 
-[ext_resource type="Texture2D" uid="uid://bgeforhbonb8" path="res://assets/buildings/capitol.svg" id="1_ybovq"]
+[ext_resource type="Texture2D" uid="uid://00s4orx3narn" path="res://assets/buildings/garden.svg" id="1_8732i"]
 
 [node name="Node2D" type="Node2D" unique_id=1122491858]
 
@@ -10,9 +10,9 @@ offset_top = -31.0
 offset_right = 31.0
 offset_bottom = 31.0
 mouse_filter = 2
-color = Color(0.41568628, 0.23137255, 0.13725491, 1)
+color = Color(0.21568628, 0.019607844, 0, 1)
 
 [node name="Capital" type="Sprite2D" parent="." unique_id=477070681]
 position = Vector2(-0.06, 0.035)
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_ybovq")
+texture = ExtResource("1_8732i")

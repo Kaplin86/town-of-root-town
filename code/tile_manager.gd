@@ -15,7 +15,9 @@ enum RoomTypes {
 	Pathway,
 	House,
 	Garden,
-	Capital
+	Capital,
+	Hospital,
+	Construction_Office
 }
 
 
@@ -118,3 +120,9 @@ func _display():
 			Background.set_cell(I,0,Vector2i(0,0))
 		elif val == RoomTypes.Emptied_Root:
 			Background.set_cell(I,0,Vector2i(1,0))
+		elif val == RoomTypes.Pathway:
+			Background.set_cell(I,1,Vector2i(0,0),2)
+		elif val == RoomTypes.House:
+			Background.set_cell(I,1,Vector2i(0,0),4)
+		elif val == RoomTypes.Garden:
+			Background.set_cell(I,1,Vector2i(0,0),3)

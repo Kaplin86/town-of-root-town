@@ -5,7 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://6xhdrqm5fwvt" path="res://scenes/tiles/capitol.tscn" id="2_jyhfs"]
 [ext_resource type="Script" uid="uid://c1uipvocm05de" path="res://code/tile_manager.gd" id="2_sugp2"]
 [ext_resource type="Script" uid="uid://bpt2tl626x0qh" path="res://code/camera_2d.gd" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://b4fuhhfp5ys36" path="res://scenes/tiles/pathway.tscn" id="4_ya4ey"]
 [ext_resource type="Script" uid="uid://7n88b823guvy" path="res://code/selector_manager.gd" id="5_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://05x53ba6qog1" path="res://scenes/tiles/garden.tscn" id="5_trceg"]
+[ext_resource type="PackedScene" uid="uid://v1aut3imootk" path="res://scenes/tiles/house.tscn" id="6_a8y0u"]
 [ext_resource type="Texture2D" uid="uid://lu4ggd3b33b4" path="res://assets/crosshair1.svg" id="6_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://cfr2lgxis1p2c" path="res://assets/crosshair2.svg" id="7_tipki"]
 [ext_resource type="Script" uid="uid://dflvr04q07bry" path="res://code/ui_manager.gd" id="9_85g3d"]
@@ -21,6 +24,9 @@ texture_region_size = Vector2i(61, 61)
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_sugp2"]
 scenes/1/scene = ExtResource("2_jyhfs")
+scenes/2/scene = ExtResource("4_ya4ey")
+scenes/3/scene = ExtResource("5_trceg")
+scenes/4/scene = ExtResource("6_a8y0u")
 
 [sub_resource type="TileSet" id="TileSet_jyhfs"]
 tile_size = Vector2i(61, 61)
