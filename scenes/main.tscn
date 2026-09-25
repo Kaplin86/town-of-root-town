@@ -1,10 +1,14 @@
 [gd_scene format=4 uid="uid://smq28heb0jo4"]
 
 [ext_resource type="Texture2D" uid="uid://sydsto6f0nio" path="res://assets/cubes.svg" id="1_0wfyh"]
+[ext_resource type="Script" uid="uid://d24utv6f1o4a7" path="res://code/main.gd" id="1_tipki"]
 [ext_resource type="PackedScene" uid="uid://6xhdrqm5fwvt" path="res://scenes/tiles/capitol.tscn" id="2_jyhfs"]
 [ext_resource type="Script" uid="uid://c1uipvocm05de" path="res://code/tile_manager.gd" id="2_sugp2"]
 [ext_resource type="Script" uid="uid://bpt2tl626x0qh" path="res://code/camera_2d.gd" id="3_sugp2"]
 [ext_resource type="Script" uid="uid://7n88b823guvy" path="res://code/selector_manager.gd" id="5_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://lu4ggd3b33b4" path="res://assets/crosshair1.svg" id="6_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://cfr2lgxis1p2c" path="res://assets/crosshair2.svg" id="7_tipki"]
+[ext_resource type="Script" uid="uid://dflvr04q07bry" path="res://code/ui_manager.gd" id="9_85g3d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0wfyh"]
 texture = ExtResource("1_0wfyh")
@@ -36,6 +40,7 @@ sources/0 = SubResource("TileSetAtlasSource_jyhfs")
 sources/1 = SubResource("TileSetScenesCollectionSource_tbgi4")
 
 [node name="Node2D" type="Node2D" unique_id=552534615]
+script = ExtResource("1_tipki")
 
 [node name="Background" type="TileMapLayer" parent="." unique_id=1988470535]
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAIAAAAAAAAAAAABAAEAAAAAAAAAAAABAAAAAAAAAAAAAAABAAMAAAAAAAAAAAABAAQAAAAAAAAAAAABAAUAAAAAAAAAAAABAAYAAAAAAAAAAAACAAUAAAAAAAAAAAACAAQAAAABAAAAAAACAAMAAAABAAAAAAACAAIAAAAAAAAAAAACAAEAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAUAAAAAAAAAAAABAAcAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAgAAAAAAAAAAAABAAgAAAAAAAAAAAACAAYAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAoAAAAAAAAAAAABAAoAAAAAAAAAAAACAAkAAAAAAAAAAAABAAkAAAAAAAAAAAACAAoAAAAAAAAAAAADAAkAAAAAAAAAAAADAAgAAAAAAAAAAAADAAcAAAABAAAAAAACAAcAAAAAAAAAAAADAAYAAAABAAAAAAADAAUAAAABAAAAAAADAAQAAAAAAAAAAAACAAgAAAAAAAAAAAADAAMAAAABAAAAAAADAAIAAAAAAAAAAAADAAEAAAAAAAAAAAADAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAoAAAAAAAAAAAAEAAoAAAAAAAAAAAAFAAoAAAAAAAAAAAAGAAoAAAAAAAAAAAAHAAoAAAAAAAAAAAAIAAoAAAAAAAAAAAAJAAoAAAAAAAAAAAAKAAoAAAAAAAAAAAALAAoAAAAAAAAAAAAMAAoAAAAAAAAAAAANAAkAAAAAAAAAAAAOAAkAAAAAAAAAAAAPAAkAAAAAAAAAAAAQAAkAAAAAAAAAAAARAAkAAAAAAAAAAAASAAkAAAAAAAAAAAAQAAoAAAAAAAAAAAARAAoAAAAAAAAAAAASAAoAAAAAAAAAAAAPAAoAAAAAAAAAAAAOAAoAAAAAAAAAAAANAAoAAAAAAAAAAAASAAcAAAAAAAAAAAASAAYAAAAAAAAAAAARAAUAAAAAAAAAAAAQAAQAAAAAAAAAAAAQAAMAAAAAAAAAAAAQAAIAAAAAAAAAAAARAAIAAAAAAAAAAAARAAEAAAAAAAAAAAARAAAAAAAAAAAAAAARAP//AAAAAAAAAAARAAMAAAAAAAAAAAARAAQAAAAAAAAAAAARAAYAAAAAAAAAAAARAAcAAAAAAAAAAAASAAUAAAAAAAAAAAASAAQAAAAAAAAAAAASAAMAAAAAAAAAAAASAAIAAAAAAAAAAAASAAEAAAAAAAAAAAASAAAAAAAAAAAAAAAQAAYAAAAAAAAAAAAQAAcAAAAAAAAAAAAQAAgAAAAAAAAAAAAPAAQAAAAAAAAAAAAOAAUAAAAAAAAAAAANAAYAAAAAAAAAAAAMAAcAAAAAAAAAAAALAAgAAAAAAAAAAAAKAAkAAAAAAAAAAAALAAcAAAABAAAAAAAMAAYAAAAAAAAAAAANAAUAAAAAAAAAAAANAAQAAAAAAAAAAAAOAAMAAAAAAAAAAAANAAIAAAAAAAAAAAAMAAMAAAAAAAAAAAALAAMAAAAAAAAAAAAKAAQAAAABAAAAAAAJAAUAAAAAAAAAAAAJAAYAAAAAAAAAAAAJAAcAAAAAAAAAAAAIAAgAAAAAAAAAAAAIAAkAAAAAAAAAAAAIAAcAAAAAAAAAAAAIAAYAAAAAAAAAAAAIAAUAAAABAAAAAAAIAAQAAAABAAAAAAAIAAMAAAABAAAAAAAHAAIAAAAAAAAAAAAHAAEAAAABAAAAAAAHAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAGAAEAAAAAAAAAAAAGAAIAAAABAAAAAAAFAAMAAAABAAAAAAAEAAQAAAAAAAAAAAAEAAUAAAAAAAAAAAAEAAYAAAAAAAAAAAAFAAQAAAAAAAAAAAAFAAIAAAABAAAAAAAFAAEAAAAAAAAAAAAFAAAAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAIAAAAAAAAAAAAEAAMAAAABAAAAAAAEAAAAAAAAAAAAAAAEAP//AAAAAAAAAAAEAAcAAAABAAAAAAAFAAcAAAAAAAAAAAAFAAgAAAAAAAAAAAAFAAkAAAAAAAAAAAAEAAkAAAAAAAAAAAAEAAgAAAAAAAAAAAAFAAYAAAAAAAAAAAAFAAUAAAAAAAAAAAAGAAQAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAUAAAAAAAAAAAAHAAMAAAAAAAAAAAAHAAQAAAAAAAAAAAAHAAUAAAAAAAAAAAAHAAYAAAAAAAAAAAAGAAcAAAAAAAAAAAAGAAgAAAAAAAAAAAAGAAkAAAAAAAAAAAAHAAcAAAAAAAAAAAAHAAgAAAAAAAAAAAAHAAkAAAAAAAAAAAAGAAYAAAAAAAAAAAAJAAgAAAAAAAAAAAAKAAYAAAAAAAAAAAAKAAUAAAAAAAAAAAAKAAMAAAABAAAAAAAKAAcAAAABAAAAAAAKAAgAAAABAAAAAAALAAUAAAABAAAAAAALAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAALAAYAAAABAAAAAAAJAAkAAAAAAAAAAAAMAAUAAAAAAAAAAAAOAAQAAAAAAAAAAAAPAAMAAAAAAAAAAAAPAAIAAAAAAAAAAAANAAMAAAAAAAAAAAAOAAIAAAAAAAAAAAAJAAMAAAAAAAAAAAAJAAQAAAAAAAAAAAAMAAIAAAAAAAAAAAAMAAEAAAAAAAAAAAALAAEAAAAAAAAAAAAKAAEAAAABAAAAAAAJAAEAAAABAAAAAAAIAAIAAAABAAAAAAAJAAIAAAABAAAAAAAKAAIAAAABAAAAAAALAAIAAAAAAAAAAAAPAAEAAAAAAAAAAAAOAAEAAAAAAAAAAAANAAEAAAAAAAAAAAAIAAEAAAABAAAAAAAMAAAAAAAAAAAAAAALAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAJAAAAAAABAAAAAAAIAAAAAAAAAAAAAAANAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAPAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAEAAAAAAAAAAAANAAcAAAAAAAAAAAAMAAgAAAAAAAAAAAALAAkAAAAAAAAAAAANAAgAAAAAAAAAAAAOAAcAAAAAAAAAAAAPAAYAAAAAAAAAAAAQAAUAAAAAAAAAAAAOAAgAAAAAAAAAAAAPAAcAAAAAAAAAAAAMAAkAAAAAAAAAAAAPAAUAAAAAAAAAAAAPAAgAAAAAAAAAAAAOAAYAAAAAAAAAAAARAAgAAAAAAAAAAAASAAgAAAAAAAAAAAA=")
@@ -59,5 +64,109 @@ tileManager = NodePath("../TileManager")
 [node name="SelectorManager" type="Node" parent="." unique_id=1273487981 node_paths=PackedStringArray("tileManager")]
 script = ExtResource("5_tbgi4")
 tileManager = NodePath("../TileManager")
+
+[node name="Outer" type="Sprite2D" parent="SelectorManager" unique_id=1054038843]
+scale = Vector2(0.143, 0.143)
+texture = ExtResource("6_o6xl0")
+
+[node name="Inner" type="Sprite2D" parent="SelectorManager" unique_id=940718362]
+position = Vector2(1.3955003, 0.32400134)
+scale = Vector2(0.143, 0.143)
+texture = ExtResource("7_tipki")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1484552480]
+
+[node name="UiManager" type="Control" parent="CanvasLayer" unique_id=1305685946 node_paths=PackedStringArray("main", "population", "food", "supplies", "workers", "availableWorkers", "TileManager", "SelectorManager", "buildingPanel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("9_85g3d")
+main = NodePath("../..")
+population = NodePath("Panel/Population")
+food = NodePath("Panel/food")
+supplies = NodePath("Panel/supplies")
+workers = NodePath("Panel/construction")
+availableWorkers = NodePath("Panel/available")
+TileManager = NodePath("../../TileManager")
+SelectorManager = NodePath("../../SelectorManager")
+buildingPanel = NodePath("BuildingPanel/VBoxContainer")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/UiManager" unique_id=1367366657]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 535.0
+offset_right = 350.0
+offset_bottom = 639.0
+
+[node name="Population" type="Label" parent="CanvasLayer/UiManager/Panel" unique_id=1889828929]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 126.0
+offset_bottom = 31.0
+text = "population: 1/5"
+
+[node name="food" type="Label" parent="CanvasLayer/UiManager/Panel" unique_id=1054716814]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 35.0
+offset_right = 125.0
+offset_bottom = 58.0
+text = "food: "
+
+[node name="supplies" type="Label" parent="CanvasLayer/UiManager/Panel" unique_id=1712604021]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 64.0
+offset_right = 127.0
+offset_bottom = 87.0
+text = "supplies: "
+
+[node name="construction" type="Label" parent="CanvasLayer/UiManager/Panel" unique_id=649023887]
+layout_mode = 0
+offset_left = 156.0
+offset_top = 13.0
+offset_right = 324.0
+offset_bottom = 36.0
+text = "construction teams: 0"
+
+[node name="available" type="Label" parent="CanvasLayer/UiManager/Panel" unique_id=1195251290]
+layout_mode = 0
+offset_left = 152.0
+offset_top = 44.0
+offset_right = 320.0
+offset_bottom = 67.0
+text = "available workers:"
+
+[node name="BuildingPanel" type="PanelContainer" parent="CanvasLayer/UiManager" unique_id=483191084]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -77.0
+offset_top = -35.0
+offset_right = -8.0
+offset_bottom = -4.0
+grow_horizontal = 0
+grow_vertical = 0
+pivot_offset_ratio = Vector2(1, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UiManager/BuildingPanel" unique_id=1505045770]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Building Name" type="Label" parent="CanvasLayer/UiManager/BuildingPanel/VBoxContainer" unique_id=1230999053]
+layout_mode = 2
+text = "BUILDING NAME HERE"
+
+[node name="Button" type="Button" parent="CanvasLayer/UiManager/BuildingPanel/VBoxContainer" unique_id=189095068]
+layout_mode = 2
+text = "Destroy"
 
 [connection signal="DoneGenerating" from="TileManager" to="Camera2D" method="_on_tile_manager_done_generating"]

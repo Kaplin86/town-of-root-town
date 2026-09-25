@@ -9,6 +9,7 @@ offset_left = -31.0
 offset_top = -31.0
 offset_right = 31.0
 offset_bottom = 31.0
+mouse_filter = 2
 color = Color(0.41568628, 0.23137255, 0.13725491, 1)
 
 [node name="Capital" type="Sprite2D" parent="." unique_id=477070681]

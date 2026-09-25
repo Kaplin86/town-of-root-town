@@ -8,8 +8,8 @@ const MAPSIZEX = 40
 const MAPSIZEY = 40
 
 enum RoomTypes {
-	Covered_Ground,
-	Covered_Root,
+	Filled_Ground,
+	Filled_Root,
 	Emptied_Ground,
 	Emptied_Root,
 	Pathway,
@@ -35,7 +35,7 @@ func _generate():
 	
 	for x in MAPSIZEX:
 		for y in MAPSIZEY:
-			Tiles[Vector2i(x,y)] = RoomTypes.Covered_Ground
+			Tiles[Vector2i(x,y)] = RoomTypes.Filled_Ground
 	
 	doWorm(Vector2(20,0), 4, 90)
 	
@@ -46,7 +46,7 @@ func _generate():
 	var lowestX = 0
 	for x in MAPSIZEX:
 		for y in MAPSIZEY:
-			if Tiles[Vector2i(x,y)] == RoomTypes.Covered_Root:
+			if Tiles[Vector2i(x,y)] == RoomTypes.Filled_Root:
 				if y >= lowestY:
 					lowestY = y
 					lowestX = x
@@ -77,8 +77,8 @@ func doWorm(startPos, thickness, angleOffset):
 		worm_pos += Vector2(cos(angle) * 1.2, sin(angle)) * 1
 		for I in thickness:
 			var offset = I - (thickness * 0.5)
-			if Tiles.get(Vector2i(worm_pos) + Vector2i(offset,0),null) == RoomTypes.Covered_Ground:
-				Tiles[Vector2i(worm_pos) + Vector2i(offset,0)] = RoomTypes.Covered_Root
+			if Tiles.get(Vector2i(worm_pos) + Vector2i(offset,0),null) == RoomTypes.Filled_Ground:
+				Tiles[Vector2i(worm_pos) + Vector2i(offset,0)] = RoomTypes.Filled_Root
 		
 		if thickness == 4 and C == round(worm_dist / 2.0):
 			var sideOffset
@@ -108,9 +108,9 @@ func _display():
 	Background.clear()
 	for I in Tiles:
 		var val : RoomTypes = Tiles[I]
-		if val == RoomTypes.Covered_Ground:
+		if val == RoomTypes.Filled_Ground:
 			Coverground.set_cell(I,0,Vector2i(0,0))
-		elif val == RoomTypes.Covered_Root:
+		elif val == RoomTypes.Filled_Root:
 			Coverground.set_cell(I,0,Vector2i(1,0))
 		elif val == RoomTypes.Capital:
 			Background.set_cell(I,1,Vector2i(0,0),1)
