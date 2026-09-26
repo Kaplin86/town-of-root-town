@@ -17,6 +17,7 @@ var RootBuildings = [TileManagerNode.RoomTypes.House,TileManagerNode.RoomTypes.H
 var GroundBuildings = [TileManagerNode.RoomTypes.Pathway,TileManagerNode.RoomTypes.Garden]
 
 var selectedPos = Vector2i.ZERO
+var thoughtToBeGroups = 0
 func _process(delta):
 	population.text = "Population: " + str(main.Population) + " / " + str(main.MaxHousing)
 	food.text = "Food: " + str(main.Food)
@@ -25,14 +26,15 @@ func _process(delta):
 	availableWorkers.text = "Available Workers: " + str(main.AvailableWorkers)
 	
 	var SelectedTileType : TileManagerNode.RoomTypes = TileManager.Tiles.get(SelectorManager.selectedPos,-1)
-	if selectedPos != SelectorManager.selectedPos:
+	if selectedPos != SelectorManager.selectedPos or thoughtToBeGroups != $"../..".CurrentWorkerTeams:
 		selectedPos = SelectorManager.selectedPos
+		thoughtToBeGroups =  $"../..".CurrentWorkerTeams
 		if SelectedTileType != null:
 			for I in buildingPanel.get_children(): I.queue_free()
 			var nameLabel = Label.new()
 			buildingPanel.add_child(nameLabel)
 			nameLabel.text = str(TileManagerNode.RoomTypes.find_key(SelectedTileType)).capitalize()
-			if !ConstructionCrewManager.currentConstructions.has(selectedPos):
+			if !(ConstructionCrewManager.currentConstructions.has(selectedPos) or $"../..".CurrentWorkerTeams == 0):
 				if SelectedTileType == TileManagerNode.RoomTypes.Filled_Ground or SelectedTileType == TileManagerNode.RoomTypes.Filled_Root:
 					var button = Button.new()
 					buildingPanel.add_child(button)
@@ -49,7 +51,10 @@ func _process(delta):
 						)
 				if SelectedTileType == TileManagerNode.RoomTypes.Emptied_Root:
 					for I in RootBuildings:
+						var cost = TileManager.RoomDatas.get(I,{}).get("cost",0)
 						var button = Button.new()
+						if cost > $"../..".Supplies:
+							button.disabled = true
 						buildingPanel.add_child(button)
 						button.text = str(TileManagerNode.RoomTypes.find_key(I)).capitalize()
 						button.pressed.connect(func():
@@ -58,7 +63,10 @@ func _process(delta):
 						)
 				if SelectedTileType == TileManagerNode.RoomTypes.Emptied_Ground:
 					for I in GroundBuildings:
+						var cost = TileManager.RoomDatas.get(I,{}).get("cost",0)
 						var button = Button.new()
+						if cost > $"../..".Supplies:
+							button.disabled = true
 						buildingPanel.add_child(button)
 						button.text = str(TileManagerNode.RoomTypes.find_key(I)).capitalize()
 						button.pressed.connect(func():

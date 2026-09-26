@@ -25,11 +25,11 @@ var RoomDatas = {
 		"cost":5
 	},
 	RoomTypes.House: {
-		"cost":10,
-		"maxPopulation":10,
+		"cost":20,
+		"maxPopulation":5,
 	},
 	RoomTypes.Garden: {
-		"cost":5,
+		"cost":15,
 		"maxworkers":2
 	},
 	RoomTypes.Capital: {
@@ -38,11 +38,11 @@ var RoomDatas = {
 		"crews":1
 	},
 	RoomTypes.Hospital: {
-		"cost":15,
+		"cost":20,
 		"maxworkers":4
 	},
 	RoomTypes.Construction_Office: {
-		"cost":20,
+		"cost":30,
 		"maxworkers":5,
 		"crews":1
 	}
@@ -164,7 +164,17 @@ func _display():
 
 
 func _on_tick_buildings_timeout() -> void:
-	pass
+	for I in Tiles:
+		var type : RoomTypes = Tiles[I]
+		if type == RoomTypes.Garden:
+			$"..".Food += 3
+	var foodWanted = round($"..".Population / 3)
+	var foodGiven = clamp(foodWanted,0,$"..".Food)
+	$"..".Food -= foodGiven
+	if foodGiven != foodWanted:
+		$"..".killOnePopulation()
+	
+	
 
 func checkForEmployees():
 	for I in Tiles:
@@ -215,3 +225,17 @@ func getMaxWorkerTeams():
 					pop += RoomDatas[type]["crews"]
 				
 	return pop
+
+func RemoveARandomEmployee():
+	var spots = []
+	for I in Tiles:
+		var type : RoomTypes = Tiles[I]
+		if type in RoomDatas:
+			if RoomDatas[type].has("maxworkers"):
+				if TilesData[I]["workers"] >= 1:
+					spots.append(I)
+	if spots != []:
+		var chosenSpot = spots.pick_random()
+		if chosenSpot:
+			TilesData[chosenSpot]["workers"] -= 1
+	

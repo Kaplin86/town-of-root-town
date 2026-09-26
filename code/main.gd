@@ -3,7 +3,7 @@ class_name MainVariableHolder
 
 var MaxHousing = 10
 var Population = 10
-var Food = 20
+var Food = 50
 var Supplies = 50
 var CurrentWorkerTeams = 1
 var AvailableWorkers = 10
@@ -23,3 +23,12 @@ func _process(delta: float) -> void:
 			AvailableWorkers += 1
 	maxWorkerTeams = $TileManager.getMaxWorkerTeams()
 	CurrentWorkerTeams = max(0,maxWorkerTeams - $ConstructionManager.currentConstructions.size())
+
+func killOnePopulation():
+	if Population > 0:
+		Population -= 1
+		if AvailableWorkers > 0:
+			AvailableWorkers -= 1
+		else:
+			$TileManager.RemoveARandomEmployee()
+	

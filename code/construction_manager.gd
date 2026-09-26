@@ -18,6 +18,8 @@ func startConstruction(pos : Vector2i, into : TileManagerNode.RoomTypes):
 		newCrew.pos = pos
 		newCrew.type = into
 		newCrew.connect("done",done)
+		if TileManager.RoomDatas.get(into, {}).has("cost"):
+			$"..".Supplies -= TileManager.RoomDatas.get(into, {}).get("cost",0)
 
 func done(pos : Vector2i, type : TileManagerNode.RoomTypes, crew : ConstructionCrewNode):
 	currentConstructions.erase(pos)
@@ -25,3 +27,8 @@ func done(pos : Vector2i, type : TileManagerNode.RoomTypes, crew : ConstructionC
 	TileManager.Tiles[pos] = type
 	$"../CanvasLayer/UiManager".selectedPos = Vector2i(-999,-999)
 	doneBuilding.emit()
+	if type in [TileManagerNode.RoomTypes.Emptied_Ground, TileManagerNode.RoomTypes.Emptied_Root]:
+		if type == TileManagerNode.RoomTypes.Emptied_Ground:
+			$"..".Supplies += 10
+		else:
+			$"..".Supplies += 15

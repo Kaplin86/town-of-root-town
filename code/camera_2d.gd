@@ -22,8 +22,8 @@ func _input(event):
 		wantedZoom = clamp(wantedZoom,0.58,5)
 
 func _process(delta):
-	zoom = lerp(zoom,Vector2.ONE * wantedZoom,delta * 5)
-	global_position = lerp(global_position,wantedPos,delta * 15)
+	zoom = lerp(zoom,Vector2.ONE * wantedZoom,min(delta * 5,1))
+	global_position = lerp(global_position,wantedPos,min(delta * 15,1))
 	
 	if Input.is_action_pressed("down"):
 		wantedPos.y += speed * delta

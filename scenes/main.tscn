@@ -67,8 +67,10 @@ Background = NodePath("../Background")
 Coverground = NodePath("../CoveringGround")
 
 [node name="Timer" type="Timer" parent="TileManager" unique_id=2139913906]
+autostart = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1551190976 node_paths=PackedStringArray("tileManager")]
+process_mode = 3
 position = Vector2(2039, 1071)
 zoom = Vector2(1.58, 1.58)
 script = ExtResource("3_sugp2")
