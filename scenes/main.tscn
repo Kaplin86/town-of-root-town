@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://dflvr04q07bry" path="res://code/ui_manager.gd" id="9_85g3d"]
 [ext_resource type="Script" uid="uid://bdlo1ac4fb5pk" path="res://code/construction_manager.gd" id="10_choun"]
 [ext_resource type="Script" uid="uid://8kmdutyufvr" path="res://code/time_manager.gd" id="16_jbj1t"]
+[ext_resource type="Script" uid="uid://vxjq06vifrfp" path="res://code/disaster_manager.gd" id="17_muem4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0wfyh"]
 texture = ExtResource("1_0wfyh")
@@ -50,6 +51,30 @@ texture_region_size = Vector2i(61, 61)
 tile_size = Vector2i(61, 61)
 sources/0 = SubResource("TileSetAtlasSource_jyhfs")
 sources/1 = SubResource("TileSetScenesCollectionSource_tbgi4")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_muem4"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dp3eg"]
+content_margin_left = 5.0
+content_margin_top = 20.0
+content_margin_right = 5.0
+content_margin_bottom = 10.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
 [node name="Node2D" type="Node2D" unique_id=552534615]
 process_mode = 3
@@ -179,6 +204,7 @@ offset_bottom = -4.0
 grow_horizontal = 0
 grow_vertical = 0
 pivot_offset_ratio = Vector2(1, 1)
+theme_override_styles/panel = SubResource("StyleBoxFlat_muem4")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UiManager/BuildingPanel" unique_id=1505045770]
 layout_mode = 2
@@ -200,6 +226,40 @@ TileManager = NodePath("../TileManager")
 [node name="TimeManager" type="Node" parent="." unique_id=736910610]
 process_mode = 3
 script = ExtResource("16_jbj1t")
+
+[node name="DisasterManager" type="Node" parent="." unique_id=1030881216]
+script = ExtResource("17_muem4")
+
+[node name="Popup" type="PopupPanel" parent="DisasterManager" unique_id=241786447]
+oversampling_override = 1.0
+initial_position = 1
+size = Vector2i(457, 274)
+visible = true
+theme_override_styles/panel = SubResource("StyleBoxFlat_dp3eg")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DisasterManager/Popup" unique_id=621529952]
+offset_left = 5.0
+offset_top = 20.0
+offset_right = 452.0
+offset_bottom = 264.0
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="DisasterManager/Popup/VBoxContainer" unique_id=1745832889]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1, 1.93)
+offset_transform_visual_only = false
+theme_override_font_sizes/font_size = 62
+text = "FAMINE."
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="DisasterManager/Popup/VBoxContainer" unique_id=977209910]
+layout_mode = 2
+theme_override_font_sizes/font_size = 23
+text = "Food will no longer be generated for the next 60 seconds.
+
+Hope you stocked up!"
+autowrap_mode = 2
 
 [connection signal="DoneGenerating" from="TileManager" to="Camera2D" method="_on_tile_manager_done_generating"]
 [connection signal="timeout" from="TileManager/Timer" to="TileManager" method="_on_tick_buildings_timeout"]

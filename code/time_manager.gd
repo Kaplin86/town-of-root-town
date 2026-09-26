@@ -19,6 +19,9 @@ func _process(delta: float) -> void:
 		Engine.time_scale = currentSpeed
 		get_tree().paused = false
 	if Input.is_action_just_pressed("pause"):
-		currentSpeed = 0
-		get_tree().paused = true
+		pause()
 		#Engine.time_scale = currentSpeed
+
+func pause():
+	currentSpeed = 0
+	get_tree().paused = true
