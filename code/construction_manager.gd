@@ -23,4 +23,5 @@ func done(pos : Vector2i, type : TileManagerNode.RoomTypes, crew : ConstructionC
 	currentConstructions.erase(pos)
 	crew.queue_free()
 	TileManager.Tiles[pos] = type
+	$"../CanvasLayer/UiManager".selectedPos = Vector2i(-999,-999)
 	doneBuilding.emit()

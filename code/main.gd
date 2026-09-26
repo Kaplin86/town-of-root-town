@@ -7,6 +7,7 @@ var Food = 20
 var Supplies = 50
 var CurrentWorkerTeams = 1
 var AvailableWorkers = 10
+var maxWorkerTeams = 1
 
 
 func _on_construction_manager_done_building() -> void:
@@ -15,9 +16,10 @@ func _on_construction_manager_done_building() -> void:
 var reproduceDT = 0.0
 func _process(delta: float) -> void:
 	reproduceDT += delta
-	print(reproduceDT / 100)
 	if randf_range(0,5) <= reproduceDT / 100:
 		reproduceDT =0 
 		if Population < MaxHousing and Population >= 2:
 			Population += 1
 			AvailableWorkers += 1
+	maxWorkerTeams = $TileManager.getMaxWorkerTeams()
+	CurrentWorkerTeams = max(0,maxWorkerTeams - $ConstructionManager.currentConstructions.size())

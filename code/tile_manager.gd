@@ -134,6 +134,7 @@ func doWorm(startPos, thickness, angleOffset):
 
 func _process(delta):
 	_display()
+	checkForEmployees()
 
 func _display():
 	Coverground.clear()
@@ -165,6 +166,32 @@ func _display():
 func _on_tick_buildings_timeout() -> void:
 	pass
 
+func checkForEmployees():
+	for I in Tiles:
+		var type : RoomTypes = Tiles[I]
+		if type in RoomDatas:
+			if RoomDatas[type].has("maxworkers"):
+				var currentEmployees = TilesData.get(I,{}).get("workers",0)
+				var employeesNeeded = RoomDatas[type]["maxworkers"] - currentEmployees
+				var employeesThatCanBeDedicated = clamp($"..".AvailableWorkers,0,employeesNeeded)
+				if TilesData.has(I):
+					TilesData[I]["workers"] = TilesData.get(I,{}).get("workers",0) + employeesThatCanBeDedicated
+				else:
+					TilesData[I] = {"workers": employeesThatCanBeDedicated}
+				$"..".AvailableWorkers -= employeesThatCanBeDedicated
+				
+			
+		
+	
+
+	
+		
+			
+				
+					
+						
+					#i got bored enjoy these tabs
+
 func getMaxPopulation():
 	var pop = 0
 	for I in Tiles:
@@ -172,4 +199,19 @@ func getMaxPopulation():
 		if type in RoomDatas:
 			if RoomDatas[type].has("maxPopulation"):
 				pop += RoomDatas[type]["maxPopulation"]
+	return pop
+
+
+func getMaxWorkerTeams():
+	var pop = 0
+	for I in Tiles:
+		var type : RoomTypes = Tiles[I]
+		if type in RoomDatas:
+			if RoomDatas[type].has("crews"):
+				if RoomDatas[type].has("maxworkers"):
+					if TilesData.get(I,{}).get("workers",0) == RoomDatas[type]["maxworkers"]:
+						pop += RoomDatas[type]["crews"]
+				else:
+					pop += RoomDatas[type]["crews"]
+				
 	return pop

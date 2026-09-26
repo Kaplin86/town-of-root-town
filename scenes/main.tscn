@@ -66,6 +66,8 @@ script = ExtResource("2_sugp2")
 Background = NodePath("../Background")
 Coverground = NodePath("../CoveringGround")
 
+[node name="Timer" type="Timer" parent="TileManager" unique_id=2139913906]
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1551190976 node_paths=PackedStringArray("tileManager")]
 position = Vector2(2039, 1071)
 zoom = Vector2(1.58, 1.58)
@@ -186,4 +188,5 @@ script = ExtResource("10_choun")
 TileManager = NodePath("../TileManager")
 
 [connection signal="DoneGenerating" from="TileManager" to="Camera2D" method="_on_tile_manager_done_generating"]
+[connection signal="timeout" from="TileManager/Timer" to="TileManager" method="_on_tick_buildings_timeout"]
 [connection signal="doneBuilding" from="ConstructionManager" to="." method="_on_construction_manager_done_building"]
