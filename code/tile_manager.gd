@@ -20,8 +20,38 @@ enum RoomTypes {
 	Construction_Office
 }
 
+var RoomDatas = {
+	RoomTypes.Pathway: {
+		"cost":5
+	},
+	RoomTypes.House: {
+		"cost":10,
+		"maxPopulation":10,
+	},
+	RoomTypes.Garden: {
+		"cost":5,
+		"maxworkers":2
+	},
+	RoomTypes.Capital: {
+		"cost":9999,
+		"maxPopulation":10,
+		"crews":1
+	},
+	RoomTypes.Hospital: {
+		"cost":15,
+		"maxworkers":4
+	},
+	RoomTypes.Construction_Office: {
+		"cost":20,
+		"maxworkers":5,
+		"crews":1
+	}
+	
+}
+
 
 var Tiles : Dictionary[Vector2i,RoomTypes]
+var TilesData : Dictionary[Vector2i,Dictionary]
 
 var noise = FastNoiseLite.new()
 
@@ -130,3 +160,16 @@ func _display():
 			Background.set_cell(I,1,Vector2i(0,0),5)
 		elif val == RoomTypes.Hospital:
 			Background.set_cell(I,1,Vector2i(0,0),6)
+
+
+func _on_tick_buildings_timeout() -> void:
+	pass
+
+func getMaxPopulation():
+	var pop = 0
+	for I in Tiles:
+		var type : RoomTypes = Tiles[I]
+		if type in RoomDatas:
+			if RoomDatas[type].has("maxPopulation"):
+				pop += RoomDatas[type]["maxPopulation"]
+	return pop

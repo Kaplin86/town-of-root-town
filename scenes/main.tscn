@@ -186,3 +186,4 @@ script = ExtResource("10_choun")
 TileManager = NodePath("../TileManager")
 
 [connection signal="DoneGenerating" from="TileManager" to="Camera2D" method="_on_tile_manager_done_generating"]
+[connection signal="doneBuilding" from="ConstructionManager" to="." method="_on_construction_manager_done_building"]
