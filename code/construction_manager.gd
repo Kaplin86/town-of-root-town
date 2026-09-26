@@ -11,6 +11,7 @@ signal doneBuilding
 
 func startConstruction(pos : Vector2i, into : TileManagerNode.RoomTypes):
 	if !currentConstructions.has(pos):
+		print("startin up")
 		var newCrew : ConstructionCrewNode= constructionCrew.instantiate()
 		add_child(newCrew)
 		newCrew.global_position = TileManager.Background.map_to_local(pos)
@@ -18,6 +19,7 @@ func startConstruction(pos : Vector2i, into : TileManagerNode.RoomTypes):
 		newCrew.pos = pos
 		newCrew.type = into
 		newCrew.connect("done",done)
+		newCrew._process(0)
 		if TileManager.RoomDatas.get(into, {}).has("cost"):
 			$"..".Supplies -= TileManager.RoomDatas.get(into, {}).get("cost",0)
 
