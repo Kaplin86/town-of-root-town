@@ -90,11 +90,12 @@ process_mode = 1
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAIAAAAAAAAAAAABAAEAAAAAAAAAAAABAAAAAAAAAAAAAAABAAMAAAAAAAAAAAABAAQAAAAAAAAAAAABAAUAAAAAAAAAAAABAAYAAAAAAAAAAAACAAUAAAAAAAAAAAACAAQAAAABAAAAAAACAAMAAAABAAAAAAACAAIAAAAAAAAAAAACAAEAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAUAAAAAAAAAAAABAAcAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAgAAAAAAAAAAAABAAgAAAAAAAAAAAACAAYAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAoAAAAAAAAAAAABAAoAAAAAAAAAAAACAAkAAAAAAAAAAAABAAkAAAAAAAAAAAACAAoAAAAAAAAAAAADAAkAAAAAAAAAAAADAAgAAAAAAAAAAAADAAcAAAABAAAAAAACAAcAAAAAAAAAAAADAAYAAAABAAAAAAADAAUAAAABAAAAAAADAAQAAAAAAAAAAAACAAgAAAAAAAAAAAADAAMAAAABAAAAAAADAAIAAAAAAAAAAAADAAEAAAAAAAAAAAADAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAoAAAAAAAAAAAAEAAoAAAAAAAAAAAAFAAoAAAAAAAAAAAAGAAoAAAAAAAAAAAAHAAoAAAAAAAAAAAAIAAoAAAAAAAAAAAAJAAoAAAAAAAAAAAAKAAoAAAAAAAAAAAALAAoAAAAAAAAAAAAMAAoAAAAAAAAAAAANAAkAAAAAAAAAAAAOAAkAAAAAAAAAAAAPAAkAAAAAAAAAAAAQAAkAAAAAAAAAAAARAAkAAAAAAAAAAAASAAkAAAAAAAAAAAAQAAoAAAAAAAAAAAARAAoAAAAAAAAAAAASAAoAAAAAAAAAAAAPAAoAAAAAAAAAAAAOAAoAAAAAAAAAAAANAAoAAAAAAAAAAAASAAcAAAAAAAAAAAASAAYAAAAAAAAAAAARAAUAAAAAAAAAAAAQAAQAAAAAAAAAAAAQAAMAAAAAAAAAAAAQAAIAAAAAAAAAAAARAAIAAAAAAAAAAAARAAEAAAAAAAAAAAARAAAAAAAAAAAAAAARAP//AAAAAAAAAAARAAMAAAAAAAAAAAARAAQAAAAAAAAAAAARAAYAAAAAAAAAAAARAAcAAAAAAAAAAAASAAUAAAAAAAAAAAASAAQAAAAAAAAAAAASAAMAAAAAAAAAAAASAAIAAAAAAAAAAAASAAEAAAAAAAAAAAASAAAAAAAAAAAAAAAQAAYAAAAAAAAAAAAQAAcAAAAAAAAAAAAQAAgAAAAAAAAAAAAPAAQAAAAAAAAAAAAOAAUAAAAAAAAAAAANAAYAAAAAAAAAAAAMAAcAAAAAAAAAAAALAAgAAAAAAAAAAAAKAAkAAAAAAAAAAAALAAcAAAABAAAAAAAMAAYAAAAAAAAAAAANAAUAAAAAAAAAAAANAAQAAAAAAAAAAAAOAAMAAAAAAAAAAAANAAIAAAAAAAAAAAAMAAMAAAAAAAAAAAALAAMAAAAAAAAAAAAKAAQAAAABAAAAAAAJAAUAAAAAAAAAAAAJAAYAAAAAAAAAAAAJAAcAAAAAAAAAAAAIAAgAAAAAAAAAAAAIAAkAAAAAAAAAAAAIAAcAAAAAAAAAAAAIAAYAAAAAAAAAAAAIAAUAAAABAAAAAAAIAAQAAAABAAAAAAAIAAMAAAABAAAAAAAHAAIAAAAAAAAAAAAHAAEAAAABAAAAAAAHAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAGAAEAAAAAAAAAAAAGAAIAAAABAAAAAAAFAAMAAAABAAAAAAAEAAQAAAAAAAAAAAAEAAUAAAAAAAAAAAAEAAYAAAAAAAAAAAAFAAQAAAAAAAAAAAAFAAIAAAABAAAAAAAFAAEAAAAAAAAAAAAFAAAAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAIAAAAAAAAAAAAEAAMAAAABAAAAAAAEAAAAAAAAAAAAAAAEAP//AAAAAAAAAAAEAAcAAAABAAAAAAAFAAcAAAAAAAAAAAAFAAgAAAAAAAAAAAAFAAkAAAAAAAAAAAAEAAkAAAAAAAAAAAAEAAgAAAAAAAAAAAAFAAYAAAAAAAAAAAAFAAUAAAAAAAAAAAAGAAQAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAUAAAAAAAAAAAAHAAMAAAAAAAAAAAAHAAQAAAAAAAAAAAAHAAUAAAAAAAAAAAAHAAYAAAAAAAAAAAAGAAcAAAAAAAAAAAAGAAgAAAAAAAAAAAAGAAkAAAAAAAAAAAAHAAcAAAAAAAAAAAAHAAgAAAAAAAAAAAAHAAkAAAAAAAAAAAAGAAYAAAAAAAAAAAAJAAgAAAAAAAAAAAAKAAYAAAAAAAAAAAAKAAUAAAAAAAAAAAAKAAMAAAABAAAAAAAKAAcAAAABAAAAAAAKAAgAAAABAAAAAAALAAUAAAABAAAAAAALAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAALAAYAAAABAAAAAAAJAAkAAAAAAAAAAAAMAAUAAAAAAAAAAAAOAAQAAAAAAAAAAAAPAAMAAAAAAAAAAAAPAAIAAAAAAAAAAAANAAMAAAAAAAAAAAAOAAIAAAAAAAAAAAAJAAMAAAAAAAAAAAAJAAQAAAAAAAAAAAAMAAIAAAAAAAAAAAAMAAEAAAAAAAAAAAALAAEAAAAAAAAAAAAKAAEAAAABAAAAAAAJAAEAAAABAAAAAAAIAAIAAAABAAAAAAAJAAIAAAABAAAAAAAKAAIAAAABAAAAAAALAAIAAAAAAAAAAAAPAAEAAAAAAAAAAAAOAAEAAAAAAAAAAAANAAEAAAAAAAAAAAAIAAEAAAABAAAAAAAMAAAAAAAAAAAAAAALAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAJAAAAAAABAAAAAAAIAAAAAAAAAAAAAAANAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAPAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAEAAAAAAAAAAAANAAcAAAAAAAAAAAAMAAgAAAAAAAAAAAALAAkAAAAAAAAAAAANAAgAAAAAAAAAAAAOAAcAAAAAAAAAAAAPAAYAAAAAAAAAAAAQAAUAAAAAAAAAAAAOAAgAAAAAAAAAAAAPAAcAAAAAAAAAAAAMAAkAAAAAAAAAAAAPAAUAAAAAAAAAAAAPAAgAAAAAAAAAAAAOAAYAAAAAAAAAAAARAAgAAAAAAAAAAAASAAgAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_mltvj")
 
-[node name="TileManager" type="Node" parent="." unique_id=843470047 node_paths=PackedStringArray("Background", "Coverground")]
+[node name="TileManager" type="Node" parent="." unique_id=843470047 node_paths=PackedStringArray("Background", "Coverground", "disasterManager")]
 process_mode = 1
 script = ExtResource("2_sugp2")
 Background = NodePath("../Background")
 Coverground = NodePath("../CoveringGround")
+disasterManager = NodePath("../DisasterManager")
 
 [node name="Timer" type="Timer" parent="TileManager" unique_id=2139913906]
 autostart = true
@@ -122,7 +123,7 @@ texture = ExtResource("7_tipki")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1484552480]
 
-[node name="UiManager" type="Control" parent="CanvasLayer" unique_id=1305685946 node_paths=PackedStringArray("main", "population", "food", "supplies", "workers", "availableWorkers", "TileManager", "SelectorManager", "ConstructionCrewManager", "buildingPanel")]
+[node name="UiManager" type="Control" parent="CanvasLayer" unique_id=1305685946 node_paths=PackedStringArray("main", "population", "food", "supplies", "workers", "availableWorkers", "TileManager", "SelectorManager", "ConstructionCrewManager", "DisasterManager", "buildingPanel")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -141,6 +142,7 @@ availableWorkers = NodePath("Panel/available")
 TileManager = NodePath("../../TileManager")
 SelectorManager = NodePath("../../SelectorManager")
 ConstructionCrewManager = NodePath("../../ConstructionManager")
+DisasterManager = NodePath("../../DisasterManager")
 buildingPanel = NodePath("BuildingPanel/VBoxContainer")
 
 [node name="Panel" type="Panel" parent="CanvasLayer/UiManager" unique_id=1367366657]
@@ -233,34 +235,71 @@ script = ExtResource("17_muem4")
 [node name="Popup" type="PopupPanel" parent="DisasterManager" unique_id=241786447]
 oversampling_override = 1.0
 initial_position = 1
-size = Vector2i(457, 274)
+size = Vector2i(611, 362)
 visible = true
 theme_override_styles/panel = SubResource("StyleBoxFlat_dp3eg")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="DisasterManager/Popup" unique_id=621529952]
+[node name="Famine" type="VBoxContainer" parent="DisasterManager/Popup" unique_id=621529952]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 5.0
 offset_top = 20.0
-offset_right = 452.0
-offset_bottom = 264.0
+offset_right = -5.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="Title" type="Label" parent="DisasterManager/Popup/VBoxContainer" unique_id=1745832889]
+[node name="Title" type="Label" parent="DisasterManager/Popup/Famine" unique_id=1745832889]
+custom_maximum_size = Vector2(611, -1)
 layout_mode = 2
 offset_transform_enabled = true
 offset_transform_scale = Vector2(1, 1.93)
 offset_transform_visual_only = false
 theme_override_font_sizes/font_size = 62
-text = "FAMINE."
+text = "yo."
 horizontal_alignment = 1
+autowrap_mode = 2
 
-[node name="Label" type="Label" parent="DisasterManager/Popup/VBoxContainer" unique_id=977209910]
+[node name="Desc" type="Label" parent="DisasterManager/Popup/Famine" unique_id=977209910]
+custom_maximum_size = Vector2(611, -1)
 layout_mode = 2
 theme_override_font_sizes/font_size = 23
-text = "Food will no longer be generated for the next 60 seconds.
-
-Hope you stocked up!"
+text = "hiya"
 autowrap_mode = 2
+
+[node name="FamineTimer" type="Timer" parent="DisasterManager" unique_id=1836239319]
+wait_time = 30.0
+
+[node name="DiscontentTimer" type="Timer" parent="DisasterManager" unique_id=1023945623]
+wait_time = 30.0
+
+[node name="EarthquakeTimer" type="Timer" parent="DisasterManager" unique_id=1684708899]
+wait_time = 30.0
+
+[node name="ArrivalTimers" type="Node" parent="DisasterManager" unique_id=1776710592]
+
+[node name="FamineArrival" type="Timer" parent="DisasterManager/ArrivalTimers" unique_id=353812513]
+
+[node name="DiscontentArrival" type="Timer" parent="DisasterManager/ArrivalTimers" unique_id=2139946852]
+
+[node name="DiseaseArrival" type="Timer" parent="DisasterManager/ArrivalTimers" unique_id=1235785630]
+
+[node name="EarthquakeArrival" type="Timer" parent="DisasterManager/ArrivalTimers" unique_id=1698645415]
+
+[node name="CollapseArrival" type="Timer" parent="DisasterManager/ArrivalTimers" unique_id=789154841]
 
 [connection signal="DoneGenerating" from="TileManager" to="Camera2D" method="_on_tile_manager_done_generating"]
 [connection signal="timeout" from="TileManager/Timer" to="TileManager" method="_on_tick_buildings_timeout"]
 [connection signal="doneBuilding" from="ConstructionManager" to="." method="_on_construction_manager_done_building"]
+[connection signal="reachSurface" from="ConstructionManager" to="." method="winCondition"]
+[connection signal="close_requested" from="DisasterManager/Popup" to="." method="_on_popup_close_requested"]
+[connection signal="timeout" from="DisasterManager/FamineTimer" to="DisasterManager" method="_on_famine_timer_timeout"]
+[connection signal="timeout" from="DisasterManager/DiscontentTimer" to="DisasterManager" method="_on_discontent_timer_timeout"]
+[connection signal="timeout" from="DisasterManager/EarthquakeTimer" to="DisasterManager" method="_on_earthquake_timer_timeout"]
+[connection signal="timeout" from="DisasterManager/ArrivalTimers/FamineArrival" to="DisasterManager" method="_on_famine_arrival_timeout"]
+[connection signal="timeout" from="DisasterManager/ArrivalTimers/DiscontentArrival" to="DisasterManager" method="_on_discontent_arrival_timeout"]
+[connection signal="timeout" from="DisasterManager/ArrivalTimers/DiseaseArrival" to="DisasterManager" method="_on_disease_arrival_timeout"]
+[connection signal="timeout" from="DisasterManager/ArrivalTimers/EarthquakeArrival" to="DisasterManager" method="_on_earthquake_arrival_timeout"]
+[connection signal="timeout" from="DisasterManager/ArrivalTimers/CollapseArrival" to="DisasterManager" method="_on_collapse_arrival_timeout"]

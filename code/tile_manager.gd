@@ -60,6 +60,8 @@ var wormID = 0
 
 signal DoneGenerating
 
+@export var disasterManager : DisasterManagerNode
+
 func _generate():
 	Tiles = {}
 	noise.noise_type = FastNoiseLite.TYPE_PERLIN
@@ -167,8 +169,10 @@ func _on_tick_buildings_timeout() -> void:
 	for I in Tiles:
 		var type : RoomTypes = Tiles[I]
 		if type == RoomTypes.Garden:
-			$"..".Food += 3
-	var foodWanted = round($"..".Population / 3)
+			if TilesData[I]["workers"] == RoomDatas[type]["maxworkers"]:
+				if !disasterManager.famined:
+					$"..".Food += 3
+	var foodWanted = max(round($"..".Population / 3),1)
 	var foodGiven = clamp(foodWanted,0,$"..".Food)
 	$"..".Food -= foodGiven
 	if foodGiven != foodWanted:

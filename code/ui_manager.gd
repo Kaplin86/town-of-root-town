@@ -10,6 +10,7 @@ extends Control
 @export var TileManager : TileManagerNode
 @export var SelectorManager : SelectorManagerNode
 @export var ConstructionCrewManager : ConstructionManager
+@export var DisasterManager : DisasterManagerNode
 
 @export var buildingPanel : VBoxContainer
 
@@ -36,19 +37,20 @@ func _process(delta):
 			nameLabel.text = str(TileManagerNode.RoomTypes.find_key(SelectedTileType)).capitalize()
 			if !(ConstructionCrewManager.currentConstructions.has(selectedPos) or $"../..".CurrentWorkerTeams == 0):
 				if SelectedTileType == TileManagerNode.RoomTypes.Filled_Ground or SelectedTileType == TileManagerNode.RoomTypes.Filled_Root:
-					var button = Button.new()
-					buildingPanel.add_child(button)
-					button.text = "DESTROY!!!!"
-					if SelectedTileType == TileManagerNode.RoomTypes.Filled_Ground:
-						button.pressed.connect(func():
-							ConstructionCrewManager.startConstruction(selectedPos,TileManagerNode.RoomTypes.Emptied_Ground)
-							selectedPos = Vector2i.ZERO
-						)
-					else:
-						button.pressed.connect(func():
-							ConstructionCrewManager.startConstruction(selectedPos,TileManagerNode.RoomTypes.Emptied_Root)
-							selectedPos = Vector2i.ZERO
-						)
+					if !DisasterManager.earthquakeed:
+						var button = Button.new()
+						buildingPanel.add_child(button)
+						button.text = "DESTROY!!!!"
+						if SelectedTileType == TileManagerNode.RoomTypes.Filled_Ground:
+							button.pressed.connect(func():
+								ConstructionCrewManager.startConstruction(selectedPos,TileManagerNode.RoomTypes.Emptied_Ground)
+								selectedPos = Vector2i.ZERO
+							)
+						else:
+							button.pressed.connect(func():
+								ConstructionCrewManager.startConstruction(selectedPos,TileManagerNode.RoomTypes.Emptied_Root)
+								selectedPos = Vector2i.ZERO
+							)
 				if SelectedTileType == TileManagerNode.RoomTypes.Emptied_Root:
 					for I in RootBuildings:
 						var cost = TileManager.RoomDatas.get(I,{}).get("cost",0)

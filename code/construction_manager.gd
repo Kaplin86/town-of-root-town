@@ -8,6 +8,7 @@ var currentConstructions : Dictionary[Vector2i,Variant] = {}
 var constructionCrew = preload("res://scenes/construction_crew.tscn")
 
 signal doneBuilding
+signal reachSurface
 
 func startConstruction(pos : Vector2i, into : TileManagerNode.RoomTypes):
 	if !currentConstructions.has(pos):
@@ -34,3 +35,5 @@ func done(pos : Vector2i, type : TileManagerNode.RoomTypes, crew : ConstructionC
 			$"..".Supplies += 10
 		else:
 			$"..".Supplies += 15
+	if pos.y == 0:
+		reachSurface.emit()
