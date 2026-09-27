@@ -35,43 +35,51 @@ func _process(delta):
 			var nameLabel = Label.new()
 			buildingPanel.add_child(nameLabel)
 			nameLabel.text = str(TileManagerNode.RoomTypes.find_key(SelectedTileType)).capitalize()
-			if !(ConstructionCrewManager.currentConstructions.has(selectedPos) or $"../..".CurrentWorkerTeams == 0):
-				if SelectedTileType == TileManagerNode.RoomTypes.Filled_Ground or SelectedTileType == TileManagerNode.RoomTypes.Filled_Root:
-					if !DisasterManager.earthquakeed:
-						var button = Button.new()
-						buildingPanel.add_child(button)
-						button.text = "DESTROY!!!!"
-						if SelectedTileType == TileManagerNode.RoomTypes.Filled_Ground:
+			
+			var validNeighbors = false
+			for I in [Vector2i(-1,0),Vector2i(1,0),Vector2i(0,-1),Vector2i(0,1)]:
+				var final = selectedPos + I
+				if not TileManager.Tiles.get(final,-1) in [TileManagerNode.RoomTypes.Filled_Ground,TileManagerNode.RoomTypes.Filled_Root,TileManagerNode.RoomTypes.Emptied_Ground,TileManagerNode.RoomTypes.Emptied_Root]:
+					validNeighbors = true
+			
+			if validNeighbors:
+				if !(ConstructionCrewManager.currentConstructions.has(selectedPos) or $"../..".CurrentWorkerTeams == 0):
+					if SelectedTileType == TileManagerNode.RoomTypes.Filled_Ground or SelectedTileType == TileManagerNode.RoomTypes.Filled_Root:
+						if !DisasterManager.earthquakeed:
+							var button = Button.new()
+							buildingPanel.add_child(button)
+							button.text = "DESTROY!!!!"
+							if SelectedTileType == TileManagerNode.RoomTypes.Filled_Ground:
+								button.pressed.connect(func():
+									ConstructionCrewManager.startConstruction(selectedPos,TileManagerNode.RoomTypes.Emptied_Ground)
+									selectedPos = Vector2i.ZERO
+								)
+							else:
+								button.pressed.connect(func():
+									ConstructionCrewManager.startConstruction(selectedPos,TileManagerNode.RoomTypes.Emptied_Root)
+									selectedPos = Vector2i.ZERO
+								)
+					if SelectedTileType == TileManagerNode.RoomTypes.Emptied_Root:
+						for I in RootBuildings:
+							var cost = TileManager.RoomDatas.get(I,{}).get("cost",0)
+							var button = Button.new()
+							if cost > $"../..".Supplies:
+								button.disabled = true
+							buildingPanel.add_child(button)
+							button.text = str(TileManagerNode.RoomTypes.find_key(I)).capitalize()
 							button.pressed.connect(func():
-								ConstructionCrewManager.startConstruction(selectedPos,TileManagerNode.RoomTypes.Emptied_Ground)
+								ConstructionCrewManager.startConstruction(selectedPos,I)
 								selectedPos = Vector2i.ZERO
 							)
-						else:
+					if SelectedTileType == TileManagerNode.RoomTypes.Emptied_Ground:
+						for I in GroundBuildings:
+							var cost = TileManager.RoomDatas.get(I,{}).get("cost",0)
+							var button = Button.new()
+							if cost > $"../..".Supplies:
+								button.disabled = true
+							buildingPanel.add_child(button)
+							button.text = str(TileManagerNode.RoomTypes.find_key(I)).capitalize()
 							button.pressed.connect(func():
-								ConstructionCrewManager.startConstruction(selectedPos,TileManagerNode.RoomTypes.Emptied_Root)
+								ConstructionCrewManager.startConstruction(selectedPos,I)
 								selectedPos = Vector2i.ZERO
 							)
-				if SelectedTileType == TileManagerNode.RoomTypes.Emptied_Root:
-					for I in RootBuildings:
-						var cost = TileManager.RoomDatas.get(I,{}).get("cost",0)
-						var button = Button.new()
-						if cost > $"../..".Supplies:
-							button.disabled = true
-						buildingPanel.add_child(button)
-						button.text = str(TileManagerNode.RoomTypes.find_key(I)).capitalize()
-						button.pressed.connect(func():
-							ConstructionCrewManager.startConstruction(selectedPos,I)
-							selectedPos = Vector2i.ZERO
-						)
-				if SelectedTileType == TileManagerNode.RoomTypes.Emptied_Ground:
-					for I in GroundBuildings:
-						var cost = TileManager.RoomDatas.get(I,{}).get("cost",0)
-						var button = Button.new()
-						if cost > $"../..".Supplies:
-							button.disabled = true
-						buildingPanel.add_child(button)
-						button.text = str(TileManagerNode.RoomTypes.find_key(I)).capitalize()
-						button.pressed.connect(func():
-							ConstructionCrewManager.startConstruction(selectedPos,I)
-							selectedPos = Vector2i.ZERO
-						)

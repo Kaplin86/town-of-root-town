@@ -309,6 +309,7 @@ autostart = true
 [connection signal="timeout" from="TileManager/Timer" to="TileManager" method="_on_tick_buildings_timeout"]
 [connection signal="doneBuilding" from="ConstructionManager" to="." method="_on_construction_manager_done_building"]
 [connection signal="reachSurface" from="ConstructionManager" to="." method="winCondition"]
+[connection signal="reachSurface" from="ConstructionManager" to="DisasterManager" method="Win"]
 [connection signal="close_requested" from="DisasterManager/Popup" to="." method="_on_popup_close_requested"]
 [connection signal="popup_hide" from="DisasterManager/Popup" to="." method="_on_popup_close_requested"]
 [connection signal="timeout" from="DisasterManager/FamineTimer" to="DisasterManager" method="_on_famine_timer_timeout"]
