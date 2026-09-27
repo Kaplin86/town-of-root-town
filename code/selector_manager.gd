@@ -30,3 +30,5 @@ func _unhandled_input(event):
 		if selectedPos != hoveringPos:
 			print("truly selecting!!")
 			selectedPos = hoveringPos
+			$Click.play()
+			$Click.pitch_scale = randf_range(0.999,1.001)

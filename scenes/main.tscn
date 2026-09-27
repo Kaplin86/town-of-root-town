@@ -15,9 +15,16 @@
 [ext_resource type="PackedScene" uid="uid://51arghqeas81" path="res://scenes/tiles/hospital.tscn" id="8_jbj1t"]
 [ext_resource type="Script" uid="uid://dflvr04q07bry" path="res://code/ui_manager.gd" id="9_85g3d"]
 [ext_resource type="Script" uid="uid://bdlo1ac4fb5pk" path="res://code/construction_manager.gd" id="10_choun"]
+[ext_resource type="AudioStream" uid="uid://ca3x6ehq3duyl" path="res://assets/sfx/misc_menu.wav" id="14_og1vs"]
 [ext_resource type="Script" uid="uid://8kmdutyufvr" path="res://code/time_manager.gd" id="16_jbj1t"]
 [ext_resource type="Script" uid="uid://vxjq06vifrfp" path="res://code/disaster_manager.gd" id="17_muem4"]
 [ext_resource type="Texture2D" uid="uid://c2xjb8utqdp04" path="res://assets/tree.svg" id="18_dp3eg"]
+[ext_resource type="Script" uid="uid://cyb40digu2cs1" path="res://code/music.gd" id="19_0ld40"]
+[ext_resource type="AudioStream" uid="uid://bawcv3jf4dpie" path="res://assets/music/Late Night Radio.mp3" id="20_jscy8"]
+[ext_resource type="AudioStream" uid="uid://becplgwtgtbgb" path="res://assets/music/Study And Relax.mp3" id="21_pm3ni"]
+[ext_resource type="AudioStream" uid="uid://cdjmok3bfvdk8" path="res://assets/music/Ultralounge.mp3" id="22_y6deb"]
+[ext_resource type="AudioStream" uid="uid://bq4im8lw6b6np" path="res://assets/music/Vibe Ace.mp3" id="23_y6deb"]
+[ext_resource type="AudioStream" uid="uid://b83d7mrasyceh" path="res://assets/music/Awesome Call.mp3" id="24_og1vs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0wfyh"]
 texture = ExtResource("1_0wfyh")
@@ -54,11 +61,137 @@ sources/0 = SubResource("TileSetAtlasSource_jyhfs")
 sources/1 = SubResource("TileSetScenesCollectionSource_tbgi4")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_muem4"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.89, 0.51976, 0.19580002, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y6deb"]
 content_margin_left = 0.0
 content_margin_top = 0.0
 content_margin_right = 0.0
 content_margin_bottom = 0.0
 bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_og1vs"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.89, 0.82058, 0.19580002, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2wyq8"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.89, 0.19580002, 0.19580002, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vxglm"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.89, 0.83571, 0.3471, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_dp3eg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ld40"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0.8901961, 0.52156866, 0.19607843, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gqmmt"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0.89, 0.46191004, 0.19580002, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yc10j"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0.89, 0.43877003, 0.19580002, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jscy8"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0.89, 0.41563, 0.19580002, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pm3ni"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0.89, 0.39248997, 0.19580002, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2f3dj"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0.7, 0.32666668, 0, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -122,6 +255,9 @@ position = Vector2(1.3955003, 0.32400134)
 scale = Vector2(0.143, 0.143)
 texture = ExtResource("7_tipki")
 
+[node name="Click" type="AudioStreamPlayer" parent="SelectorManager" unique_id=1302623669]
+stream = ExtResource("14_og1vs")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1484552480]
 
 [node name="UiManager" type="Control" parent="CanvasLayer" unique_id=1305685946 node_paths=PackedStringArray("main", "population", "food", "supplies", "workers", "availableWorkers", "TileManager", "SelectorManager", "ConstructionCrewManager", "DisasterManager", "buildingPanel")]
@@ -135,63 +271,16 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("9_85g3d")
 main = NodePath("../..")
-population = NodePath("Panel/Population")
-food = NodePath("Panel/food")
-supplies = NodePath("Panel/supplies")
-workers = NodePath("Panel/construction")
-availableWorkers = NodePath("Panel/available")
+population = NodePath("PanelContainer/VBoxContainer/PanelContainer/Population")
+food = NodePath("PanelContainer/VBoxContainer/PanelContainer2/food")
+supplies = NodePath("PanelContainer/VBoxContainer/PanelContainer3/supplies")
+workers = NodePath("PanelContainer/VBoxContainer/PanelContainer4/construction")
+availableWorkers = NodePath("PanelContainer/VBoxContainer/PanelContainer5/available")
 TileManager = NodePath("../../TileManager")
 SelectorManager = NodePath("../../SelectorManager")
 ConstructionCrewManager = NodePath("../../ConstructionManager")
 DisasterManager = NodePath("../../DisasterManager")
 buildingPanel = NodePath("BuildingPanel/VBoxContainer")
-
-[node name="Panel" type="Panel" parent="CanvasLayer/UiManager" unique_id=1367366657]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 535.0
-offset_right = 350.0
-offset_bottom = 639.0
-
-[node name="Population" type="Label" parent="CanvasLayer/UiManager/Panel" unique_id=1889828929]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 126.0
-offset_bottom = 31.0
-text = "population: 1/5"
-
-[node name="food" type="Label" parent="CanvasLayer/UiManager/Panel" unique_id=1054716814]
-layout_mode = 0
-offset_left = 7.0
-offset_top = 35.0
-offset_right = 125.0
-offset_bottom = 58.0
-text = "food: "
-
-[node name="supplies" type="Label" parent="CanvasLayer/UiManager/Panel" unique_id=1712604021]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 64.0
-offset_right = 127.0
-offset_bottom = 87.0
-text = "supplies: "
-
-[node name="construction" type="Label" parent="CanvasLayer/UiManager/Panel" unique_id=649023887]
-layout_mode = 0
-offset_left = 156.0
-offset_top = 13.0
-offset_right = 324.0
-offset_bottom = 36.0
-text = "construction teams: 0"
-
-[node name="available" type="Label" parent="CanvasLayer/UiManager/Panel" unique_id=1195251290]
-layout_mode = 0
-offset_left = 152.0
-offset_top = 44.0
-offset_right = 320.0
-offset_bottom = 67.0
-text = "available workers:"
 
 [node name="BuildingPanel" type="PanelContainer" parent="CanvasLayer/UiManager" unique_id=483191084]
 layout_mode = 1
@@ -200,8 +289,8 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -77.0
-offset_top = -35.0
+offset_left = -301.0
+offset_top = -195.0
 offset_right = -8.0
 offset_bottom = -4.0
 grow_horizontal = 0
@@ -211,15 +300,277 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_muem4")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UiManager/BuildingPanel" unique_id=1505045770]
 layout_mode = 2
-size_flags_horizontal = 8
 
 [node name="Building Name" type="Label" parent="CanvasLayer/UiManager/BuildingPanel/VBoxContainer" unique_id=1230999053]
 layout_mode = 2
+theme_override_font_sizes/font_size = 25
 text = "BUILDING NAME HERE"
 
 [node name="Button" type="Button" parent="CanvasLayer/UiManager/BuildingPanel/VBoxContainer" unique_id=189095068]
 layout_mode = 2
 text = "Destroy"
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/UiManager" unique_id=371729259]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 427.0
+offset_right = 271.0
+offset_bottom = 642.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_y6deb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UiManager/PanelContainer" unique_id=15639494]
+layout_mode = 2
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UiManager/PanelContainer/VBoxContainer" unique_id=471111732]
+layout_mode = 2
+
+[node name="0speed" type="Button" parent="CanvasLayer/UiManager/PanelContainer/VBoxContainer/HBoxContainer" unique_id=655157537]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_og1vs")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2wyq8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vxglm")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_dp3eg")
+text = "0x"
+
+[node name="1speed" type="Button" parent="CanvasLayer/UiManager/PanelContainer/VBoxContainer/HBoxContainer" unique_id=792479785]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_og1vs")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2wyq8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vxglm")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_dp3eg")
+text = ">"
+
+[node name="2speed" type="Button" parent="CanvasLayer/UiManager/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1544428474]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_og1vs")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2wyq8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vxglm")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_dp3eg")
+text = ">>"
+
+[node name="3speed" type="Button" parent="CanvasLayer/UiManager/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1878677412]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_og1vs")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2wyq8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vxglm")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_dp3eg")
+text = ">>>"
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/UiManager/PanelContainer/VBoxContainer" unique_id=427921569]
+custom_minimum_size = Vector2(0, 33.97)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0ld40")
+
+[node name="Population" type="Label" parent="CanvasLayer/UiManager/PanelContainer/VBoxContainer/PanelContainer" unique_id=1889828929]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+text = "population: 1/5"
+
+[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer/UiManager/PanelContainer/VBoxContainer" unique_id=1141200002]
+custom_minimum_size = Vector2(0, 33.97)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gqmmt")
+
+[node name="food" type="Label" parent="CanvasLayer/UiManager/PanelContainer/VBoxContainer/PanelContainer2" unique_id=1054716814]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+text = "food: "
+
+[node name="PanelContainer3" type="PanelContainer" parent="CanvasLayer/UiManager/PanelContainer/VBoxContainer" unique_id=97387639]
+custom_minimum_size = Vector2(0, 33.97)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yc10j")
+
+[node name="supplies" type="Label" parent="CanvasLayer/UiManager/PanelContainer/VBoxContainer/PanelContainer3" unique_id=1712604021]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+text = "supplies: "
+
+[node name="PanelContainer4" type="PanelContainer" parent="CanvasLayer/UiManager/PanelContainer/VBoxContainer" unique_id=1728085858]
+custom_minimum_size = Vector2(0, 33.97)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jscy8")
+
+[node name="construction" type="Label" parent="CanvasLayer/UiManager/PanelContainer/VBoxContainer/PanelContainer4" unique_id=649023887]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+text = "construction teams: 0"
+
+[node name="PanelContainer5" type="PanelContainer" parent="CanvasLayer/UiManager/PanelContainer/VBoxContainer" unique_id=1457265849]
+custom_minimum_size = Vector2(0, 33.97)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pm3ni")
+
+[node name="available" type="Label" parent="CanvasLayer/UiManager/PanelContainer/VBoxContainer/PanelContainer5" unique_id=1195251290]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+text = "available workers:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UiManager" unique_id=542021893]
+layout_mode = 0
+offset_left = 289.0
+offset_top = 4.0
+offset_right = 839.0
+offset_bottom = 56.0
+alignment = 1
+
+[node name="Panel" type="PanelContainer" parent="CanvasLayer/UiManager/HBoxContainer" unique_id=1830249000]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Famine will stop food generation for 30 seconds."
+theme_override_styles/panel = SubResource("StyleBoxFlat_2f3dj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UiManager/HBoxContainer/Panel" unique_id=955337362]
+layout_mode = 2
+
+[node name="FTimer" type="Label" parent="CanvasLayer/UiManager/HBoxContainer/Panel/VBoxContainer" unique_id=1818393570]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "0:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title" type="Label" parent="CanvasLayer/UiManager/HBoxContainer/Panel/VBoxContainer" unique_id=1220917490]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "FAMINE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel2" type="PanelContainer" parent="CanvasLayer/UiManager/HBoxContainer" unique_id=1633973616]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Discontent will stop population generation for 30 seconds."
+theme_override_styles/panel = SubResource("StyleBoxFlat_2f3dj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UiManager/HBoxContainer/Panel2" unique_id=1344549698]
+layout_mode = 2
+
+[node name="DTimer" type="Label" parent="CanvasLayer/UiManager/HBoxContainer/Panel2/VBoxContainer" unique_id=864754056]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "0:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title" type="Label" parent="CanvasLayer/UiManager/HBoxContainer/Panel2/VBoxContainer" unique_id=1567702068]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "DISCONTENT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel3" type="PanelContainer" parent="CanvasLayer/UiManager/HBoxContainer" unique_id=2147267538]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Disease will kill all your population. Luckily, 15 people are saved per hospital."
+theme_override_styles/panel = SubResource("StyleBoxFlat_2f3dj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UiManager/HBoxContainer/Panel3" unique_id=999036659]
+layout_mode = 2
+
+[node name="diTimer" type="Label" parent="CanvasLayer/UiManager/HBoxContainer/Panel3/VBoxContainer" unique_id=1383243317]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "0:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title" type="Label" parent="CanvasLayer/UiManager/HBoxContainer/Panel3/VBoxContainer" unique_id=1055225724]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "DISEASE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel4" type="PanelContainer" parent="CanvasLayer/UiManager/HBoxContainer" unique_id=62348403]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Earthquake will prevent you from emptying out tiles for 30 seconds."
+theme_override_styles/panel = SubResource("StyleBoxFlat_2f3dj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UiManager/HBoxContainer/Panel4" unique_id=1895627407]
+layout_mode = 2
+
+[node name="ETimer" type="Label" parent="CanvasLayer/UiManager/HBoxContainer/Panel4/VBoxContainer" unique_id=1535383380]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "0:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title" type="Label" parent="CanvasLayer/UiManager/HBoxContainer/Panel4/VBoxContainer" unique_id=1132996743]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "EARTHQUAKE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel5" type="PanelContainer" parent="CanvasLayer/UiManager/HBoxContainer" unique_id=623184247]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "You don't want this to happen."
+theme_override_styles/panel = SubResource("StyleBoxFlat_2f3dj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UiManager/HBoxContainer/Panel5" unique_id=1159714417]
+layout_mode = 2
+
+[node name="CTimer" type="Label" parent="CanvasLayer/UiManager/HBoxContainer/Panel5/VBoxContainer" unique_id=1727723600]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "0:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title" type="Label" parent="CanvasLayer/UiManager/HBoxContainer/Panel5/VBoxContainer" unique_id=1651945056]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "COLLAPSE"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ConstructionManager" type="Node" parent="." unique_id=1763708581 node_paths=PackedStringArray("TileManager")]
 process_mode = 3
@@ -281,26 +632,31 @@ wait_time = 30.0
 [node name="ArrivalTimers" type="Node" parent="DisasterManager" unique_id=1776710592]
 
 [node name="FamineArrival" type="Timer" parent="DisasterManager/ArrivalTimers" unique_id=353812513]
+process_mode = 1
 wait_time = 120.0
 one_shot = true
 autostart = true
 
 [node name="DiscontentArrival" type="Timer" parent="DisasterManager/ArrivalTimers" unique_id=2139946852]
+process_mode = 1
 wait_time = 240.0
 one_shot = true
 autostart = true
 
 [node name="DiseaseArrival" type="Timer" parent="DisasterManager/ArrivalTimers" unique_id=1235785630]
+process_mode = 1
 wait_time = 360.0
 one_shot = true
 autostart = true
 
 [node name="EarthquakeArrival" type="Timer" parent="DisasterManager/ArrivalTimers" unique_id=1698645415]
+process_mode = 1
 wait_time = 840.0
 one_shot = true
 autostart = true
 
 [node name="CollapseArrival" type="Timer" parent="DisasterManager/ArrivalTimers" unique_id=789154841]
+process_mode = 1
 wait_time = 1000.0
 one_shot = true
 autostart = true
@@ -316,8 +672,16 @@ position = Vector2(1370, -494)
 rotation = 0.14480174
 texture = ExtResource("18_dp3eg")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=310757666]
+script = ExtResource("19_0ld40")
+streams = Array[AudioStream]([ExtResource("20_jscy8"), ExtResource("21_pm3ni"), ExtResource("22_y6deb"), ExtResource("23_y6deb"), ExtResource("24_og1vs")])
+
 [connection signal="DoneGenerating" from="TileManager" to="Camera2D" method="_on_tile_manager_done_generating"]
 [connection signal="timeout" from="TileManager/Timer" to="TileManager" method="_on_tick_buildings_timeout"]
+[connection signal="pressed" from="CanvasLayer/UiManager/PanelContainer/VBoxContainer/HBoxContainer/0speed" to="TimeManager" method="_on_0_pressed"]
+[connection signal="pressed" from="CanvasLayer/UiManager/PanelContainer/VBoxContainer/HBoxContainer/1speed" to="TimeManager" method="_on_1_pressed"]
+[connection signal="pressed" from="CanvasLayer/UiManager/PanelContainer/VBoxContainer/HBoxContainer/2speed" to="TimeManager" method="_on_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/UiManager/PanelContainer/VBoxContainer/HBoxContainer/3speed" to="TimeManager" method="_on_x_pressed"]
 [connection signal="doneBuilding" from="ConstructionManager" to="." method="_on_construction_manager_done_building"]
 [connection signal="reachSurface" from="ConstructionManager" to="." method="winCondition"]
 [connection signal="reachSurface" from="ConstructionManager" to="DisasterManager" method="Win"]
@@ -331,3 +695,4 @@ texture = ExtResource("18_dp3eg")
 [connection signal="timeout" from="DisasterManager/ArrivalTimers/DiseaseArrival" to="DisasterManager" method="_on_disease_arrival_timeout"]
 [connection signal="timeout" from="DisasterManager/ArrivalTimers/EarthquakeArrival" to="DisasterManager" method="_on_earthquake_arrival_timeout"]
 [connection signal="timeout" from="DisasterManager/ArrivalTimers/CollapseArrival" to="DisasterManager" method="_on_collapse_arrival_timeout"]
+[connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]

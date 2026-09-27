@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bq4im8lw6b6np"
+path="res://.godot/imported/Vibe Ace.mp3-5687b604a44bcb1c0867750c2ceaa75a.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Vibe Ace.mp3"
+dest_files=["res://.godot/imported/Vibe Ace.mp3-5687b604a44bcb1c0867750c2ceaa75a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

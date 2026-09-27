@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://c11jjdet00a0p" path="res://icon.svg" id="1_3yhdj"]
 [ext_resource type="Script" uid="uid://b53vxf8tx4egy" path="res://code/construction_crew.gd" id="1_s64oo"]
+[ext_resource type="AudioStream" uid="uid://dfi48e1ptu3sw" path="res://assets/sfx/freesound_community-construction-35446.mp3" id="3_p3ahd"]
+[ext_resource type="AudioStream" uid="uid://d2bxdsg8okacn" path="res://assets/sfx/breakrock.mp3" id="4_oraqd"]
 
 [sub_resource type="Gradient" id="Gradient_4kxuq"]
 offsets = PackedFloat32Array(0, 0.21721311, 0.7827869, 0.9918033)
@@ -66,5 +68,13 @@ vertical_alignment = 1
 wait_time = 5.0
 one_shot = true
 autostart = true
+
+[node name="FreesoundCommunityConstruction35446" type="AudioStreamPlayer2D" parent="." unique_id=1298136993]
+stream = ExtResource("3_p3ahd")
+autoplay = true
+attenuation = 30.909939
+
+[node name="Breakrock" type="AudioStreamPlayer2D" parent="." unique_id=25499621]
+stream = ExtResource("4_oraqd")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

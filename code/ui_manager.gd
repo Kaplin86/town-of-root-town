@@ -26,6 +26,12 @@ func _process(delta):
 	workers.text = "Construction Crews: " + str(main.CurrentWorkerTeams)
 	availableWorkers.text = "Available Workers: " + str(main.AvailableWorkers)
 	
+	formatTime($"../../DisasterManager/ArrivalTimers/FamineArrival",%FTimer)
+	formatTime($"../../DisasterManager/ArrivalTimers/DiscontentArrival",%DTimer)
+	formatTime($"../../DisasterManager/ArrivalTimers/DiseaseArrival",%diTimer)
+	formatTime($"../../DisasterManager/ArrivalTimers/EarthquakeArrival",%ETimer)
+	formatTime($"../../DisasterManager/ArrivalTimers/CollapseArrival",%CTimer)
+	
 	var SelectedTileType : TileManagerNode.RoomTypes = TileManager.Tiles.get(SelectorManager.selectedPos,-1)
 	if selectedPos != SelectorManager.selectedPos or thoughtToBeGroups != $"../..".CurrentWorkerTeams:
 		selectedPos = SelectorManager.selectedPos
@@ -35,6 +41,7 @@ func _process(delta):
 			var nameLabel = Label.new()
 			buildingPanel.add_child(nameLabel)
 			nameLabel.text = str(TileManagerNode.RoomTypes.find_key(SelectedTileType)).capitalize()
+			nameLabel.add_theme_font_size_override("font_size",25)
 			
 			var validNeighbors = false
 			for I in [Vector2i(-1,0),Vector2i(1,0),Vector2i(0,-1),Vector2i(0,1)]:
@@ -47,17 +54,20 @@ func _process(delta):
 					if SelectedTileType == TileManagerNode.RoomTypes.Filled_Ground or SelectedTileType == TileManagerNode.RoomTypes.Filled_Root:
 						if !DisasterManager.earthquakeed:
 							var button = Button.new()
+							button.add_theme_font_size_override("font_size",25)
 							buildingPanel.add_child(button)
 							button.text = "DESTROY!!!!"
 							if SelectedTileType == TileManagerNode.RoomTypes.Filled_Ground:
 								button.pressed.connect(func():
 									ConstructionCrewManager.startConstruction(selectedPos,TileManagerNode.RoomTypes.Emptied_Ground)
 									selectedPos = Vector2i.ZERO
+									
 								)
 							else:
 								button.pressed.connect(func():
 									ConstructionCrewManager.startConstruction(selectedPos,TileManagerNode.RoomTypes.Emptied_Root)
 									selectedPos = Vector2i.ZERO
+
 								)
 					if SelectedTileType == TileManagerNode.RoomTypes.Emptied_Root:
 						for I in RootBuildings:
@@ -66,7 +76,8 @@ func _process(delta):
 							if cost > $"../..".Supplies:
 								button.disabled = true
 							buildingPanel.add_child(button)
-							button.text = str(TileManagerNode.RoomTypes.find_key(I)).capitalize()
+							button.add_theme_font_size_override("font_size",25)
+							button.text = str(TileManagerNode.RoomTypes.find_key(I)).capitalize() + " - " + str(int(cost)) + "$"
 							button.pressed.connect(func():
 								ConstructionCrewManager.startConstruction(selectedPos,I)
 								selectedPos = Vector2i.ZERO
@@ -78,8 +89,15 @@ func _process(delta):
 							if cost > $"../..".Supplies:
 								button.disabled = true
 							buildingPanel.add_child(button)
-							button.text = str(TileManagerNode.RoomTypes.find_key(I)).capitalize()
+							button.add_theme_font_size_override("font_size",25)
+							button.text = str(TileManagerNode.RoomTypes.find_key(I)).capitalize()  + " - " + str(int(cost)) + "$"
 							button.pressed.connect(func():
 								ConstructionCrewManager.startConstruction(selectedPos,I)
 								selectedPos = Vector2i.ZERO
 							)
+
+func formatTime(timer : Timer,label : Label):
+	var total_seconds: int = floori(timer.time_left)
+	var minutes: int = total_seconds / 60
+	var seconds: int = total_seconds % 60
+	label.text = "%02d:%02d" % [minutes, seconds] 

@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://nou0d0pvvi0i" path="res://code/mouseparalax.gd" id="2_s5g8n"]
 [ext_resource type="Texture2D" uid="uid://cyp27728jr20o" path="res://assets/mainmenu/justshading.png" id="3_s5g8n"]
 [ext_resource type="Texture2D" uid="uid://ct7f6sg38uhqq" path="res://assets/mainmenu/logo.png" id="5_s5g8n"]
+[ext_resource type="AudioStream" uid="uid://b83d7mrasyceh" path="res://assets/music/Awesome Call.mp3" id="6_7yvfd"]
 
 [sub_resource type="Gradient" id="Gradient_r3g3c"]
 offsets = PackedFloat32Array(0.584, 1)
@@ -109,5 +110,9 @@ text = "Play"
 [node name="Logo" type="Sprite2D" parent="." unique_id=121368837]
 position = Vector2(295, 150)
 texture = ExtResource("5_s5g8n")
+
+[node name="AwesomeCall" type="AudioStreamPlayer" parent="." unique_id=174429644]
+stream = ExtResource("6_7yvfd")
+autoplay = true
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

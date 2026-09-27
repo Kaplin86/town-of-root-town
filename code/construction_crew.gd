@@ -18,4 +18,13 @@ func _process(delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
+	if type in [TileManagerNode.RoomTypes.Emptied_Ground,TileManagerNode.RoomTypes.Emptied_Root]:
+		var newSound = $Breakrock.duplicate()
+		get_parent().get_parent().add_child(newSound)
+		newSound.play()
+		newSound.global_position = global_position
+		print("new sound is ", newSound)
+	await get_tree().process_frame
 	done.emit(pos,type,self)
+
+		

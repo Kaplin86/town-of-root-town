@@ -1,16 +1,30 @@
 [gd_scene format=3 uid="uid://bofixepbvr347"]
 
 [ext_resource type="Script" uid="uid://brecrwmwpeuqa" path="res://code/results.gd" id="1_qh7lt"]
+[ext_resource type="Script" uid="uid://cpvxnybdodbkm" path="res://code/tomainmenu.gd" id="2_21kdr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r4wmc"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.82, 0.58179, 0.1394, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
 [node name="Node2D" type="Node2D" unique_id=738476458]
+process_mode = 3
 script = ExtResource("1_qh7lt")
 
 [node name="Status" type="Label" parent="." unique_id=661618335]
 anchors_preset = -1
-offset_left = 21.0
-offset_top = -46.000004
-offset_right = 199.0
-offset_bottom = -4.000004
+offset_left = 2.0
+offset_top = 16.999996
+offset_right = 180.0
+offset_bottom = 58.999996
 grow_horizontal = 2
 scale = Vector2(6.219934, 7.118665)
 theme_override_font_sizes/font_size = 30
@@ -30,3 +44,16 @@ offset_top = 232.0
 offset_right = 736.0
 offset_bottom = 255.0
 text = "Peak Population:"
+
+[node name="Button" type="Button" parent="." unique_id=129565713]
+offset_left = 138.0
+offset_top = 541.0
+offset_right = 445.0
+offset_bottom = 632.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_r4wmc")
+text = "return"
+script = ExtResource("2_21kdr")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
