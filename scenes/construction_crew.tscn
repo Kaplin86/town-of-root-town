@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://si7rh2vqbquo"]
 
-[ext_resource type="Texture2D" uid="uid://c11jjdet00a0p" path="res://icon.svg" id="1_3yhdj"]
 [ext_resource type="Script" uid="uid://b53vxf8tx4egy" path="res://code/construction_crew.gd" id="1_s64oo"]
 [ext_resource type="AudioStream" uid="uid://dfi48e1ptu3sw" path="res://assets/sfx/freesound_community-construction-35446.mp3" id="3_p3ahd"]
 [ext_resource type="AudioStream" uid="uid://d2bxdsg8okacn" path="res://assets/sfx/breakrock.mp3" id="4_oraqd"]
@@ -11,6 +10,14 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="Gradient" id="Gradient_mti6b"]
 colors = PackedColorArray(0.8146785, 0.8146786, 0.81467855, 1, 1.8247963, 1.8247963, 1.8247963, 1)
+
+[sub_resource type="Gradient" id="Gradient_p3ahd"]
+colors = PackedColorArray(0.92, 0.644, 0, 1, 1, 0.75, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ifu3a"]
+gradient = SubResource("Gradient_p3ahd")
+width = 128
+height = 128
 
 [node name="Node2D" type="Node2D" unique_id=1672404357]
 process_mode = 1
@@ -52,9 +59,9 @@ offset_bottom = 118.0
 scale = Vector2(0.35989696, 0.0806291)
 step = 0.265
 value = 69.96
-texture_under = ExtResource("1_3yhdj")
-texture_progress = ExtResource("1_3yhdj")
-tint_progress = Color(0, 0, 0, 1)
+texture_under = SubResource("GradientTexture2D_ifu3a")
+texture_progress = SubResource("GradientTexture2D_ifu3a")
+tint_progress = Color(0.44, 0.308, 0, 1)
 
 [node name="Label" type="Label" parent="." unique_id=18950351]
 offset_left = -31.0

@@ -13,7 +13,9 @@ config_version=5
 config/name="Town Of RootTown"
 run/main_scene="uid://c8weukoa50j2c"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.21, 0.15414, 0.0504, 1)
+boot_splash/image="uid://ct7f6sg38uhqq"
+config/icon="uid://c2xjb8utqdp04"
 
 [display]
 
