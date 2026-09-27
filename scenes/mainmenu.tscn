@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://nvl5p0iofpsc" path="res://code/mainmenu.gd" id="1_r3g3c"]
 [ext_resource type="Texture2D" uid="uid://8ybux0chwgem" path="res://assets/mainmenu/mainmenunoshading.png" id="2_3vvtq"]
+[ext_resource type="Script" uid="uid://nou0d0pvvi0i" path="res://code/mouseparalax.gd" id="2_s5g8n"]
 [ext_resource type="Texture2D" uid="uid://cyp27728jr20o" path="res://assets/mainmenu/justshading.png" id="3_s5g8n"]
+[ext_resource type="Texture2D" uid="uid://ct7f6sg38uhqq" path="res://assets/mainmenu/logo.png" id="5_s5g8n"]
 
 [sub_resource type="Gradient" id="Gradient_r3g3c"]
 offsets = PackedFloat32Array(0.584, 1)
@@ -25,44 +27,69 @@ corner_detail = 5
 
 [node name="Node2D" type="Node2D" unique_id=860213496 node_paths=PackedStringArray("shadingImage")]
 script = ExtResource("1_r3g3c")
-shadingImage = NodePath("Mainmenualtshading2")
+shadingImage = NodePath("Node2D/Mainmenualtshading2")
 
-[node name="Mainmenualtshading" type="Sprite2D" parent="." unique_id=601582424]
+[node name="Node2D" type="Node2D" parent="." unique_id=2137543207]
 position = Vector2(660, 313.99997)
+script = ExtResource("2_s5g8n")
+
+[node name="Mainmenualtshading" type="Sprite2D" parent="Node2D" unique_id=601582424]
 scale = Vector2(0.9394444, 0.93944436)
 texture = ExtResource("2_3vvtq")
 
-[node name="Mainmenualtshading2" type="Sprite2D" parent="." unique_id=1292091791]
-position = Vector2(660, 313.99997)
+[node name="Mainmenualtshading2" type="Sprite2D" parent="Node2D" unique_id=1292091791]
 scale = Vector2(0.9394444, 0.93944436)
 texture = ExtResource("3_s5g8n")
+
+[node name="ColorRect" type="ColorRect" parent="Node2D" unique_id=201569875]
+offset_left = -753.0
+offset_top = -806.0
+offset_right = 800.0
+offset_bottom = -388.99997
+color = Color(0.29411766, 0.03529412, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Node2D" unique_id=446854801]
+offset_left = -2081.0
+offset_top = -390.99997
+offset_right = -528.0
+offset_bottom = 449.00003
+color = Color(0.29411766, 0.03529412, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Node2D" unique_id=1030198985]
+offset_left = -807.0
+offset_top = 410.0
+offset_right = 746.0
+offset_bottom = 827.0
+color = Color(0.34901962, 0.05882353, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="Node2D" unique_id=769347413]
+offset_left = 562.0
+offset_top = -856.0
+offset_right = 2115.0
+offset_bottom = 1187.0
+color = Color(0.29411766, 0.03529412, 0, 1)
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1397610262]
 offset_right = 613.0
 offset_bottom = 652.0
 texture = SubResource("GradientTexture2D_4kxuq")
 
-[node name="Label" type="Label" parent="." unique_id=1016993926]
-offset_top = 19.0
-offset_right = 348.0
-offset_bottom = 66.0
-theme_override_font_sizes/font_size = 34
-text = "Town of ROOT TOWN"
-
 [node name="Label2" type="Label" parent="." unique_id=165153143]
-offset_top = 76.0
-offset_right = 348.0
-offset_bottom = 123.0
+offset_left = 118.0
+offset_top = 276.0
+offset_right = 466.0
+offset_bottom = 323.0
 theme_override_font_sizes/font_size = 21
 text = "(a cozy fall jam 2026 submission)"
 horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="." unique_id=239566811]
-custom_maximum_size = Vector2(348, -1)
-offset_top = 219.0
-offset_right = 348.0
-offset_bottom = 266.0
-theme_override_font_sizes/font_size = 21
+custom_maximum_size = Vector2(584.685, -1)
+offset_left = 11.0
+offset_top = 324.0
+offset_right = 595.0
+offset_bottom = 519.0
+theme_override_font_sizes/font_size = 29
 text = "BEFORE PLAYING, PLEASE HAVE A QUICK READ OF THE 
 \"HOW 2 PLAY\" SECTION IN THE DESCRIPTION!!
 I DID NOT HAVE ENOUGH TIME TO CODE AN ENTIRE TUTORIAL, SORRY!!!!!!!!!"
@@ -70,13 +97,17 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Button" type="Button" parent="." unique_id=1619454585]
-offset_left = 30.0
-offset_top = 538.0
-offset_right = 337.0
-offset_bottom = 629.0
+offset_left = 138.0
+offset_top = 541.0
+offset_right = 445.0
+offset_bottom = 632.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 60
 theme_override_styles/normal = SubResource("StyleBoxFlat_r3g3c")
 text = "Play"
+
+[node name="Logo" type="Sprite2D" parent="." unique_id=121368837]
+position = Vector2(295, 150)
+texture = ExtResource("5_s5g8n")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

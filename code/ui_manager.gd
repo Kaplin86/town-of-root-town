@@ -39,7 +39,7 @@ func _process(delta):
 			var validNeighbors = false
 			for I in [Vector2i(-1,0),Vector2i(1,0),Vector2i(0,-1),Vector2i(0,1)]:
 				var final = selectedPos + I
-				if not TileManager.Tiles.get(final,-1) in [TileManagerNode.RoomTypes.Filled_Ground,TileManagerNode.RoomTypes.Filled_Root,TileManagerNode.RoomTypes.Emptied_Ground,TileManagerNode.RoomTypes.Emptied_Root]:
+				if not TileManager.Tiles.get(final,-1) in [TileManagerNode.RoomTypes.Filled_Ground,TileManagerNode.RoomTypes.Filled_Root,TileManagerNode.RoomTypes.Emptied_Ground,TileManagerNode.RoomTypes.Emptied_Root, -1]:
 					validNeighbors = true
 			
 			if validNeighbors:

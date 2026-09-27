@@ -50,10 +50,9 @@ func _on_popup_close_requested() -> void:
 		resultingScene.Tiles = $TileManager.Tiles
 		resultingScene.CurrentPop = Population
 		resultingScene.PeakPopulation = peakPopulation
-		if win:
-			get_tree().change_scene_to_node(resultingScene)
-		elif Population <= 0:
-			get_tree().change_scene_to_node(resultingScene)
+		resultingScene.Win = win
+		get_tree().change_scene_to_node(resultingScene)
+		
 
 func winCondition() -> void:
 	win = true

@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://bdlo1ac4fb5pk" path="res://code/construction_manager.gd" id="10_choun"]
 [ext_resource type="Script" uid="uid://8kmdutyufvr" path="res://code/time_manager.gd" id="16_jbj1t"]
 [ext_resource type="Script" uid="uid://vxjq06vifrfp" path="res://code/disaster_manager.gd" id="17_muem4"]
+[ext_resource type="Texture2D" uid="uid://c2xjb8utqdp04" path="res://assets/tree.svg" id="18_dp3eg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0wfyh"]
 texture = ExtResource("1_0wfyh")
@@ -244,8 +245,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 5.0
 offset_top = 20.0
-offset_right = -5.0
-offset_bottom = -10.0
+offset_right = 606.0
+offset_bottom = 352.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
@@ -303,6 +304,17 @@ autostart = true
 wait_time = 1000.0
 one_shot = true
 autostart = true
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=925058012]
+offset_left = -6687.0
+offset_top = -5519.0
+offset_right = 13309.0
+color = Color(0.7936559, 0.9999998, 0.9723267, 1)
+
+[node name="Tree" type="Sprite2D" parent="." unique_id=1003541848]
+position = Vector2(1370, -494)
+rotation = 0.14480174
+texture = ExtResource("18_dp3eg")
 
 [connection signal="DoneGenerating" from="TileManager" to="Camera2D" method="_on_tile_manager_done_generating"]
 [connection signal="timeout" from="TileManager/Timer" to="TileManager" method="_on_tick_buildings_timeout"]
