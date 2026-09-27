@@ -281,20 +281,36 @@ wait_time = 30.0
 [node name="ArrivalTimers" type="Node" parent="DisasterManager" unique_id=1776710592]
 
 [node name="FamineArrival" type="Timer" parent="DisasterManager/ArrivalTimers" unique_id=353812513]
+wait_time = 120.0
+one_shot = true
+autostart = true
 
 [node name="DiscontentArrival" type="Timer" parent="DisasterManager/ArrivalTimers" unique_id=2139946852]
+wait_time = 240.0
+one_shot = true
+autostart = true
 
 [node name="DiseaseArrival" type="Timer" parent="DisasterManager/ArrivalTimers" unique_id=1235785630]
+wait_time = 360.0
+one_shot = true
+autostart = true
 
 [node name="EarthquakeArrival" type="Timer" parent="DisasterManager/ArrivalTimers" unique_id=1698645415]
+wait_time = 840.0
+one_shot = true
+autostart = true
 
 [node name="CollapseArrival" type="Timer" parent="DisasterManager/ArrivalTimers" unique_id=789154841]
+wait_time = 1000.0
+one_shot = true
+autostart = true
 
 [connection signal="DoneGenerating" from="TileManager" to="Camera2D" method="_on_tile_manager_done_generating"]
 [connection signal="timeout" from="TileManager/Timer" to="TileManager" method="_on_tick_buildings_timeout"]
 [connection signal="doneBuilding" from="ConstructionManager" to="." method="_on_construction_manager_done_building"]
 [connection signal="reachSurface" from="ConstructionManager" to="." method="winCondition"]
 [connection signal="close_requested" from="DisasterManager/Popup" to="." method="_on_popup_close_requested"]
+[connection signal="popup_hide" from="DisasterManager/Popup" to="." method="_on_popup_close_requested"]
 [connection signal="timeout" from="DisasterManager/FamineTimer" to="DisasterManager" method="_on_famine_timer_timeout"]
 [connection signal="timeout" from="DisasterManager/DiscontentTimer" to="DisasterManager" method="_on_discontent_timer_timeout"]
 [connection signal="timeout" from="DisasterManager/EarthquakeTimer" to="DisasterManager" method="_on_earthquake_timer_timeout"]

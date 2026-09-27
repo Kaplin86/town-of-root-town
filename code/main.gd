@@ -9,12 +9,16 @@ var CurrentWorkerTeams = 1
 var AvailableWorkers = 10
 var maxWorkerTeams = 1
 
+var peakPopulation = 0
 
 func _on_construction_manager_done_building() -> void:
 	MaxHousing = $TileManager.getMaxPopulation()
 
 var reproduceDT = 0.0
 func _process(delta: float) -> void:
+	if Population > peakPopulation:
+		peakPopulation = Population
+	
 	if !get_tree().paused:
 		reproduceDT += delta
 		if randf_range(0,5) <= reproduceDT / 100:
@@ -41,10 +45,15 @@ func killOnePopulation():
 var win = false
 
 func _on_popup_close_requested() -> void:
-	if win:
-		pass
-	elif Population <= 0:
-		pass
+	if win or Population <= 0:
+		var resultingScene = load("res://scenes/results.tscn").instantiate()
+		resultingScene.Tiles = $TileManager.Tiles
+		resultingScene.CurrentPop = Population
+		resultingScene.PeakPopulation = peakPopulation
+		if win:
+			get_tree().change_scene_to_node(resultingScene)
+		elif Population <= 0:
+			get_tree().change_scene_to_node(resultingScene)
 
 func winCondition() -> void:
 	win = true

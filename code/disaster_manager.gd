@@ -1,7 +1,8 @@
 extends Node
 class_name DisasterManagerNode
 
-
+func _process(delta: float) -> void:
+	print($ArrivalTimers/CollapseArrival.time_left)
 
 var famined = false
 var discontented = false
@@ -71,6 +72,17 @@ func Death():
 However, it does not have to end this way.
 Click to try again."
 	#$"..".Population = 0
+
+func Win():
+	$Popup.popup()
+	$"../TimeManager".pause()
+	$Popup/Famine/Title.text = "SURFACE."
+	$Popup/Famine/Desc.text = "Yay! Town of RootTown surfaced and can now live in peace!!
+
+(Lets just hope that whatever happened to them in the first place doesn't happen again...)
+Click to try again."
+	#$"..".Population = 0
+
 
 func _on_famine_timer_timeout() -> void: famined = false
 func _on_discontent_timer_timeout() -> void: discontented = false
