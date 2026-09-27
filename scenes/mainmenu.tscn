@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://c8weukoa50j2c"]
+
+[ext_resource type="Script" uid="uid://nvl5p0iofpsc" path="res://code/mainmenu.gd" id="1_r3g3c"]
+[ext_resource type="Texture2D" uid="uid://8ybux0chwgem" path="res://assets/mainmenu/mainmenunoshading.png" id="2_3vvtq"]
+[ext_resource type="Texture2D" uid="uid://cyp27728jr20o" path="res://assets/mainmenu/justshading.png" id="3_s5g8n"]
+
+[sub_resource type="Gradient" id="Gradient_r3g3c"]
+offsets = PackedFloat32Array(0.584, 1)
+colors = PackedColorArray(0.55, 0.2643667, 0.13200001, 1, 0.64, 0.30762666, 0.1536, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4kxuq"]
+gradient = SubResource("Gradient_r3g3c")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r3g3c"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.82, 0.58179, 0.1394, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="Node2D" type="Node2D" unique_id=860213496 node_paths=PackedStringArray("shadingImage")]
+script = ExtResource("1_r3g3c")
+shadingImage = NodePath("Mainmenualtshading2")
+
+[node name="Mainmenualtshading" type="Sprite2D" parent="." unique_id=601582424]
+position = Vector2(660, 313.99997)
+scale = Vector2(0.9394444, 0.93944436)
+texture = ExtResource("2_3vvtq")
+
+[node name="Mainmenualtshading2" type="Sprite2D" parent="." unique_id=1292091791]
+position = Vector2(660, 313.99997)
+scale = Vector2(0.9394444, 0.93944436)
+texture = ExtResource("3_s5g8n")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1397610262]
+offset_right = 613.0
+offset_bottom = 652.0
+texture = SubResource("GradientTexture2D_4kxuq")
+
+[node name="Label" type="Label" parent="." unique_id=1016993926]
+offset_top = 19.0
+offset_right = 348.0
+offset_bottom = 66.0
+theme_override_font_sizes/font_size = 34
+text = "Town of ROOT TOWN"
+
+[node name="Label2" type="Label" parent="." unique_id=165153143]
+offset_top = 76.0
+offset_right = 348.0
+offset_bottom = 123.0
+theme_override_font_sizes/font_size = 21
+text = "(a cozy fall jam 2026 submission)"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="." unique_id=239566811]
+custom_maximum_size = Vector2(348, -1)
+offset_top = 219.0
+offset_right = 348.0
+offset_bottom = 266.0
+theme_override_font_sizes/font_size = 21
+text = "BEFORE PLAYING, PLEASE HAVE A QUICK READ OF THE 
+\"HOW 2 PLAY\" SECTION IN THE DESCRIPTION!!
+I DID NOT HAVE ENOUGH TIME TO CODE AN ENTIRE TUTORIAL, SORRY!!!!!!!!!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="." unique_id=1619454585]
+offset_left = 30.0
+offset_top = 538.0
+offset_right = 337.0
+offset_bottom = 629.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_r3g3c")
+text = "Play"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
